@@ -1,0 +1,230 @@
+<odoo>
+
+  <!-- Form View -->
+  <record model="ir.ui.view" id="school_student_form_view_id">
+    <field name="name">School Module Form</field>
+    <field name="model">school.student</field>
+    <field name="arch" type="xml">
+      <form string="Form View">
+        <h1 class='text-center'>
+          School Management System
+        </h1>
+        <h5 class='text-center'>
+          [Registration Form]
+        </h5>
+        <header>
+            <field name="status" options="{'clickable':'1'}" widget="statusbar"  nolabel="1"/>
+        </header>
+        <sheet> 
+            <div class="oe_title"><div>
+            <h1><field name="enroll" readonly="1" /></h1>
+              <label for="name" />
+            </div>
+            <h1 class="mb32">
+              <field name="name" placeholder="Full Name" class="mb16" />
+            </h1>
+            <field name="active" invisible="1" />
+          </div>
+          <notebook>
+            <page string="Student Detail">
+              <group>
+                <group>
+                  <field name="std_div" />
+                  <field name="roll_number" />
+                  <field name="grade_level" />
+                  <field name="dob" />
+                  <field name="age" />
+
+                  <field name="stream"
+                    attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
+                  <field name="class_teacher" widget="Many2one_link" />
+                  <field name="phone_code"/>
+                  <field name="phone" />
+                </group>
+                <group>
+                  <field name="country_id"/>
+                  <field name="country_code"/>
+                  <field name="state_id" />
+                  <field name="street" />
+                  <field name="city" />
+                  <field name="zip" />
+                  <button name="%(School_Management.action_submit)d" string="Submit form" type="action" confirm="Are you sure to submit?" class="oe_highlight"/>
+                </group>
+              </group>
+            </page>
+            <page string="Parents Detail" id="parent">
+              <group>
+                <group>
+                  <field name="parent_name" />
+                  <field name="relation_with_student" />
+                </group>
+                <group>
+                  <field name="phone_parent" />
+                  <field name="email_parent" />
+                   <button name="%(School_Management.action_submit)d" string="Submit form" type="action" confirm="Are you sure to submit?"  class="oe_highlight"/>
+                </group>
+              </group>
+            </page>
+            <page string="Previous School Detail">
+              <group>
+                <group>
+                  <field name="student_prev_school" />
+                  <field name="enroll_prev_school" />
+                </group>
+                <group>
+                  <field name="prev_school_adm_date" />
+                  <field name="prev_school_leaving_date" />
+                   <button name="%(School_Management.action_submit)d" string="Submit form" type="action" confirm="Are you sure to submit?"  class="oe_highlight"/>
+                </group>
+              </group>
+            </page>
+          </notebook>
+        </sheet>
+        <div class="oe_chatter">
+          <field name="message_follower_ids" />
+          <field name="message_ids" options="{'post refresh': 'recipients'}" />
+        </div>
+      </form>
+    </field>
+  </record>
+
+
+  <!-- Tree View -->
+  <record id="student_view_tree" model="ir.ui.view">
+    <field name="name">School module tree</field>
+    <field name="model">school.student</field>
+    <field name="arch" type="xml">
+      <tree string="Channel">
+        <field name="name" />
+        <field name="enroll" />
+        <field name="std_div" />
+        <field name="class_teacher" widget="many2onebutton" />
+        <field name="roll_number" />
+        <field name="dob" />
+        <field name="age" />
+        <field name="formatted_address" />
+        <field name="phone" />
+        <field name="parent_name" />
+        <field name="relation_with_student" />
+        <field name="phone_parent" />
+        <field name="email_parent" />
+        <field name="student_prev_school" />
+        <field name="enroll_prev_school" />
+        <field name="prev_school_adm_date" />
+        <field name="prev_school_leaving_date" />
+       
+        <field name="status" />
+        
+      </tree>
+    </field>
+  </record>
+  <record model="ir.ui.view" id="view_form_teacher_id">
+    <field name="name">Teacher Module Form</field>
+    <field name="model">school.teacher</field>
+    <field name="arch" type="xml">
+      <form string="Form View">
+        <h1 class='text-center'>
+          School Management System
+        </h1>
+        <h5 class='text-center'>
+          Class Teacher's registration
+        </h5>
+        <sheet> 
+            <div class="oe_title"><div>
+            <h1><field name="teacher_id" readonly="1" /></h1>
+              <label for="name" />
+            </div>
+            <h1 class="mb32">
+              <field name="name" placeholder="Full Name" class="mb16" />
+            </h1>
+            <field name="active" invisible="1" />
+          </div>
+          <notebook>
+            <page string="Teacher Detail">
+                <group>
+                  <field name="teacher_id" />
+                  <field name="std_div" />
+                  <field name="stream" attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}"/>
+                  <field name="grade_level"/>
+                  <field name="phone" />
+                </group>
+            </page>
+          </notebook>
+        </sheet>
+        <div class="oe_chatter">
+          <field name="message_follower_ids" />
+          <field name="message_ids" options="{'post refresh': 'recipients'}" />
+        </div>
+      </form>
+    </field>
+  </record>
+   <record id="teacher_view_tree" model="ir.ui.view">
+    <field name="name">Teacher module tree</field>
+    <field name="model">school.teacher</field>
+    <field name="arch" type="xml">
+      <tree string="Channel">
+        <field name="name" />
+        <field name="std_div" />
+        <field name="grade_level"/>
+        <field name="stream"/>
+      </tree>
+    </field>
+  </record>
+ 
+  <record id="view_school_student_search" model="ir.ui.view">
+    <field name="name">school.student.search</field>
+    <field name="model">school.student</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="birth_month" string="Month" />
+
+        <group expand="0" string="Group By">
+          <filter string="Birth Month" name="birth_month" context="{'group_by': 'birth_month'}" />
+        </group>
+        <field name="std_div" string="Standard &amp; Division" />
+        <filter name="filter_10th" string="10th Standard" domain="[('std_div', '=', '10th')]" />
+      </search>
+    </field>
+  </record>
+  <!-- Action -->
+  <record model="ir.actions.act_window" id="action_submit">
+    <field name="name">Submit Action</field>
+    <field name="res_model">school.student</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[]</field>
+    <field name="context">{'search_default_filter_10th': 1}</field>
+  </record>
+  
+  <record id="action_school_student_science" model="ir.actions.act_window">
+    <field name="name">Science Students</field>
+    <field name="res_model">school.student</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('stream', '=', 'science')]</field>
+  </record>
+
+  <record id="action_school_student_commerce" model="ir.actions.act_window">
+    <field name="name">Commerce Students</field>
+    <field name="res_model">school.student</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('stream', '=', 'commerce')]</field>
+  </record>
+  <record id="action_school_student_arts" model="ir.actions.act_window">
+    <field name="name">Arts Students</field>
+    <field name="res_model">school.student</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('stream', '=', 'arts')]</field>
+  </record>
+  <record id="action_school_teacher" model="ir.actions.act_window">
+    <field name="name">Class Teacher</field>
+    <field name="res_model">school.teacher</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+
+  <menuitem id="menu_range" name="School" sequence="10" />
+  <menuitem id="menu_data" name="Streams" parent="menu_range" action="action_submit" />
+  <menuitem id="school_teacher_list" name="Class Teacher's List" parent="menu_range" action="action_school_teacher" />
+  <menuitem id="menu_school_student_science" name="Science" parent="menu_data" action="action_school_student_science" />
+  <menuitem id="menu_school_student_commerce" name="Commerce " parent="menu_data" action="action_school_student_commerce" />
+  <menuitem id="menu_school_student_arts" name="Arts " parent="menu_data" action="action_school_student_arts" />
+</odoo>

@@ -1,0 +1,49 @@
+<!-- Demo Data -->
+<odoo>
+<data noupdate='1'>
+<record id="demo_student_1" model="school.student">
+    <field name="name">Student 1</field>
+    <field name="phone">1111911111</field>
+    <field name="std_div">11th</field>
+    <field name="roll_number">1</field>
+    <field name="parent_name">Parent 1</field>
+    <field name="phone_parent">1111111112</field>
+    <field name="email_parent">parent1@example.com</field>
+    <field name="student_prev_school">Previous School 1</field>
+    <field name="enroll_prev_school">2022001</field>
+    <field name="prev_school_adm_date">2022-01-01</field>
+    <field name="prev_school_leaving_date">2023-06-29</field>
+   
+</record>
+
+<record id="demo_student_2" model="school.student">
+    <field name="name">Student 2</field>
+    <field name="phone">2122222222</field>
+    <field name="std_div">10th</field>
+    <field name="roll_number">2</field>
+    <field name="parent_name">Parent 2</field>
+    <field name="phone_parent">2222222223</field>
+    <field name="email_parent">parent2@example.com</field>
+    <field name="student_prev_school">Previous School 2</field>
+    <field name="enroll_prev_school">2022002</field>
+    <field name="prev_school_adm_date">2022-02-01</field>
+    <field name="prev_school_leaving_date">2023-06-29</field>
+   
+</record>
+
+<record id="demo_student_3" model="school.student">
+    <field name="name">Student 3</field>
+    <field name="phone">3333333393</field>
+    <field name="std_div">11th</field>
+    <field name="roll_number">3</field>
+    <field name="parent_name">Parent 3</field>
+    <field name="phone_parent">3333333337</field>
+    <field name="email_parent">parent3@example.com</field>
+    <field name="student_prev_school">Previous School 3</field>
+    <field name="enroll_prev_school">2022003</field>
+    <field name="prev_school_adm_date">2022-03-01</field>
+    <field name="prev_school_leaving_date">2023-06-29</field>
+    
+</record>
+</data>
+</odoo>
