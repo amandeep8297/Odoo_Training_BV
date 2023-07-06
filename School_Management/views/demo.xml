@@ -4,7 +4,7 @@
 <record id="demo_student_1" model="school.student">
     <field name="name">Student 1</field>
     <field name="phone">1111911111</field>
-    <field name="std_div">11th</field>
+    <field name="std_div">12th</field>
     <field name="roll_number">1</field>
     <field name="parent_name">Parent 1</field>
     <field name="phone_parent">1111111112</field>
