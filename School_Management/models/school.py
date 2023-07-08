@@ -50,6 +50,7 @@ class SchoolStudent(models.Model):
         ('commerce', 'Commerce'),
         ('arts', 'Arts'),
     ],store=True)
+    image=fields.Image(string="Display picture")
     street = fields.Char()
     city = fields.Char()
     state_id = fields.Many2one('res.country.state', domain="[('country_id', '=', country_id)]")

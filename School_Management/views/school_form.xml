@@ -13,18 +13,26 @@
           [Registration Form]
         </h5>
         <header>
-            <field name="status" options="{'clickable':'1'}" widget="statusbar"  nolabel="1"/>
+          <field name="status" options="{'clickable':'1'}" widget="statusbar" nolabel="1" />
         </header>
-        <sheet> 
-            <div class="oe_title"><div>
-            <h1><field name="enroll" readonly="1" /></h1>
-              <label for="name" />
+        <sheet>
+          <group>
+            <div class="oe_title">
+              <div>
+                <h1>
+                  <field name="enroll" readonly="1" />
+                </h1>
+                <label for="name" />
+              </div>
+              <h1 class="mb32">
+                <field name="name" placeholder="Full Name" class="mb16" />
+              </h1>
+              <field name="active" invisible="1" />
             </div>
-            <h1 class="mb32">
-              <field name="name" placeholder="Full Name" class="mb16" />
-            </h1>
-            <field name="active" invisible="1" />
-          </div>
+            <group>
+              <field name="image" widget="image" />
+            </group>
+          </group>
           <notebook>
             <page string="Student Detail">
               <group>
@@ -34,21 +42,21 @@
                   <field name="grade_level" />
                   <field name="dob" />
                   <field name="age" />
-
                   <field name="stream"
                     attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
                   <field name="class_teacher" widget="Many2one_link" />
-                  <field name="phone_code"/>
+                  <field name="phone_code" />
                   <field name="phone" />
                 </group>
                 <group>
-                  <field name="country_id"/>
-                  <field name="country_code"/>
+                  <field name="country_id" />
+                  <field name="country_code" />
                   <field name="state_id" />
                   <field name="street" />
                   <field name="city" />
                   <field name="zip" />
-                  <button name="%(School_Management.action_submit)d" string="Submit form" type="action" confirm="Are you sure to submit?" class="oe_highlight"/>
+                  <button name="%(School_Management.action_submit)d" string="Submit form"
+                    type="action" confirm="Are you sure to submit?" class="oe_highlight" />
                 </group>
               </group>
             </page>
@@ -61,7 +69,8 @@
                 <group>
                   <field name="phone_parent" />
                   <field name="email_parent" />
-                   <button name="%(School_Management.action_submit)d" string="Submit form" type="action" confirm="Are you sure to submit?"  class="oe_highlight"/>
+                  <button name="%(School_Management.action_submit)d" string="Submit form"
+                    type="action" confirm="Are you sure to submit?" class="oe_highlight" />
                 </group>
               </group>
             </page>
@@ -74,7 +83,8 @@
                 <group>
                   <field name="prev_school_adm_date" />
                   <field name="prev_school_leaving_date" />
-                   <button name="%(School_Management.action_submit)d" string="Submit form" type="action" confirm="Are you sure to submit?"  class="oe_highlight"/>
+                  <button name="%(School_Management.action_submit)d" string="Submit form"
+                    type="action" confirm="Are you sure to submit?" class="oe_highlight" />
                 </group>
               </group>
             </page>
@@ -94,27 +104,20 @@
     <field name="name">School module tree</field>
     <field name="model">school.student</field>
     <field name="arch" type="xml">
-      <tree string="Channel">
-        <field name="name" />
+      <tree string="Channel"
+      decoration-warning="status == 'applied'"
+    decoration-danger="status == 'rejected'"
+    decoration-info="status == 'cleared_entrance_test'"
+    decoration-primary="status == 'joined_school'"
+    decoration-success="status == 'selected'"
+    >
         <field name="enroll" />
         <field name="std_div" />
-        <field name="class_teacher" widget="many2onebutton" />
-        <field name="roll_number" />
-        <field name="dob" />
-        <field name="age" />
         <field name="formatted_address" />
         <field name="phone" />
-        <field name="parent_name" />
-        <field name="relation_with_student" />
         <field name="phone_parent" />
         <field name="email_parent" />
-        <field name="student_prev_school" />
-        <field name="enroll_prev_school" />
-        <field name="prev_school_adm_date" />
-        <field name="prev_school_leaving_date" />
-       
         <field name="status" />
-        
       </tree>
     </field>
   </record>
@@ -129,9 +132,12 @@
         <h5 class='text-center'>
           Class Teacher's registration
         </h5>
-        <sheet> 
-            <div class="oe_title"><div>
-            <h1><field name="teacher_id" readonly="1" /></h1>
+        <sheet>
+          <div class="oe_title">
+            <div>
+              <h1>
+                <field name="teacher_id" readonly="1" />
+              </h1>
               <label for="name" />
             </div>
             <h1 class="mb32">
@@ -141,13 +147,14 @@
           </div>
           <notebook>
             <page string="Teacher Detail">
-                <group>
-                  <field name="teacher_id" />
-                  <field name="std_div" />
-                  <field name="stream" attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}"/>
-                  <field name="grade_level"/>
-                  <field name="phone" />
-                </group>
+              <group>
+                <field name="teacher_id" />
+                <field name="std_div" />
+                <field name="stream"
+                  attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
+                <field name="grade_level" />
+                <field name="phone" />
+              </group>
             </page>
           </notebook>
         </sheet>
@@ -158,19 +165,19 @@
       </form>
     </field>
   </record>
-   <record id="teacher_view_tree" model="ir.ui.view">
+  <record id="teacher_view_tree" model="ir.ui.view">
     <field name="name">Teacher module tree</field>
     <field name="model">school.teacher</field>
     <field name="arch" type="xml">
       <tree string="Channel">
         <field name="name" />
         <field name="std_div" />
-        <field name="grade_level"/>
-        <field name="stream"/>
+        <field name="grade_level" />
+        <field name="stream" />
       </tree>
     </field>
   </record>
- 
+
   <record id="view_school_student_search" model="ir.ui.view">
     <field name="name">school.student.search</field>
     <field name="model">school.student</field>
@@ -194,7 +201,7 @@
     <field name="domain">[]</field>
     <field name="context">{'search_default_filter_10th': 1}</field>
   </record>
-  
+
   <record id="action_school_student_science" model="ir.actions.act_window">
     <field name="name">Science Students</field>
     <field name="res_model">school.student</field>
@@ -219,12 +226,16 @@
     <field name="res_model">school.teacher</field>
     <field name="view_mode">tree,form</field>
   </record>
-
-
   <menuitem id="menu_range" name="School" sequence="10" />
   <menuitem id="menu_data" name="Streams" parent="menu_range" action="action_submit" />
-  <menuitem id="school_teacher_list" name="Class Teacher's List" parent="menu_range" action="action_school_teacher" />
-  <menuitem id="menu_school_student_science" name="Science" parent="menu_data" action="action_school_student_science" />
-  <menuitem id="menu_school_student_commerce" name="Commerce " parent="menu_data" action="action_school_student_commerce" />
-  <menuitem id="menu_school_student_arts" name="Arts " parent="menu_data" action="action_school_student_arts" />
+  <menuitem id="school_teacher_list" name="Class Teacher's List" parent="menu_range"
+    action="action_school_teacher" />
+  <menuitem id="menu_school_student_science" name="Science" parent="menu_data"
+    action="action_school_student_science" />
+  <menuitem id="menu_school_student_commerce" name="Commerce " parent="menu_data"
+    action="action_school_student_commerce" />
+  <menuitem id="menu_school_student_arts" name="Arts " parent="menu_data"
+    action="action_school_student_arts" />
+  <menuitem id="menu_school_icon" name="School"
+    web_icon="School_Management,static/description/icon.png" sequence="0" />
 </odoo>
