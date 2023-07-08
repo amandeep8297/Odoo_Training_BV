@@ -226,9 +226,6 @@
     <field name="res_model">school.teacher</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <menuitem id="menu_school_icon" name="School"
-    web_icon="School_Management,static/description/icon.png" sequence="0" />
-
   <menuitem id="menu_range" name="School" sequence="10" />
   <menuitem id="menu_data" name="Streams" parent="menu_range" action="action_submit" />
   <menuitem id="school_teacher_list" name="Class Teacher's List" parent="menu_range"
@@ -239,4 +236,6 @@
     action="action_school_student_commerce" />
   <menuitem id="menu_school_student_arts" name="Arts " parent="menu_data"
     action="action_school_student_arts" />
+  <menuitem id="menu_school_icon" name="School"
+    web_icon="School_Management,static/description/icon.png" sequence="0" />
 </odoo>
