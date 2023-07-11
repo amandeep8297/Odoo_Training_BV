@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo>
+
+  <record id="view_new_admission_form" model="ir.ui.view">
+    <field name="name">admission_wizard</field>
+    <field name="model">admission.wizard</field>
+    <field name="arch" type="xml">
+      <form string="New Admission Form">
+        <group>
+          <field name="signature"/>
+          <field name="birth_year"/>
+        </group>
+        <footer>
+          <button name="action_create_admission" type="object" string="Create new Admission" class="btn-primary"/>
+          <button string="Cancel" class="btn-secondary" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_create_admission">
+    <field name="name">Submit Action</field>
+    <field name="res_model">admission.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_new_admission_form"/>
+    <field name="target">new</field>
+  </record>
+
+</odoo>

@@ -2,7 +2,7 @@ from datetime import date
 from odoo import fields, api, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.translate import _
-import re
+
 class SchoolStudent(models.Model):
     _name = "school.student"
     _inherit = ["mail.thread"]
@@ -49,7 +49,13 @@ class SchoolStudent(models.Model):
         ('science', 'Science'),
         ('commerce', 'Commerce'),
         ('arts', 'Arts'),
-    ],store=True)
+    ],store=True)    
+    fee_status = fields.Selection([
+        ('paid', 'Paid'), 
+        ('half_paid', 'Half Paid'), 
+        ('pending', 'Pending')
+    ], string='Fee Status',store=True)
+    transport=fields.Many2one('res.users',string="Transport Incharge")
     image=fields.Image(string="Display picture")
     street = fields.Char()
     city = fields.Char()
@@ -68,6 +74,12 @@ class SchoolStudent(models.Model):
             
     grade_level = fields.Integer(string='Grade Level')
 
+    def action_url(self):
+        return{
+            'type':'ir.actions.act_url',
+            'target':'new',
+            'url':'https://www.odoo.com/documentation/16.0/'
+        }
     @api.depends('std_div', 'stream', 'grade_level')
     def _compute_class_teacher(self):
         for student in self:
@@ -91,9 +103,9 @@ class SchoolStudent(models.Model):
                            
     status=fields.Selection([
         ('applied',"Applied"),
-        ('cleared_entrance_test',"Cleared Entrance Test"),
+        ('cleared_entrance_test',"Cleared"),
         ('selected',"Selected"),
-        ('joined_school',"Joined School"),
+        ('joined_school',"Joined"),
         ('rejected',"Rejected"),
     ],default="applied",string="Status",required=True)            
 
@@ -103,6 +115,17 @@ class SchoolStudent(models.Model):
             self.phone_code = self.country_id.phone_code
         else:
             self.phone_code = False
+            
+    def change_status(self):
+        for rec in self:
+            if rec.status == 'joined_school':
+                rec.fee_status = 'paid'
+            else:
+                rec.fee_status = 'pending'
+            
+    def action_done(self):
+        for rec in self:
+            rec.status='selected'
     
     @api.depends('dob')
     def _compute_age(self):
@@ -148,23 +171,5 @@ class SchoolStudent(models.Model):
             if rec.dob and rec.dob > today:
                 raise ValidationError(_("Invalid Date of Birth."))
 
-class SchoolTeacher(models.Model):
-    _name = 'school.teacher'
-    _description = 'Teacher'
-    _inherit = ["mail.thread"]
-    name = fields.Char(string='Class Teacher Name',tracking=True, required=True,store=True)
-    active = fields.Boolean('Active', default=True)
-    teacher_id = fields.Integer(string='Class-Teacher ID',tracking=True, required=True)
-    grade_level = fields.Integer(string='Grade Level',required=True,store=True)
-    std_div = fields.Char(string='Standard-Division', required=True,store=True)
-    phone = fields.Char(string='Contact no',  tracking=True)
-    student_id = fields.One2many('school.student', 'class_teacher', string='students')
-    stream = fields.Selection([
-        ('science', 'Science'),
-        ('commerce', 'Commerce'),
-        ('arts', 'Arts'),
-    ], string='Stream', store=True)
-    _sql_constraints = [
-        ('unique_teacher', 'unique (std_div, stream)', 'Teacher name already exists!'),
-    ]
+
 
