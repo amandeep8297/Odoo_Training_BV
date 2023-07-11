@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <odoo>
 
   <!-- Form View -->
@@ -13,6 +14,8 @@
           [Registration Form]
         </h5>
         <header>
+          <button id="button_create_admission" name="%(action_create_admission)d"
+            string="Create new Admission" class="btn-primary" type="action" />
           <field name="status" options="{'clickable':'1'}" widget="statusbar" nolabel="1" />
         </header>
         <sheet>
@@ -30,7 +33,7 @@
               <field name="active" invisible="1" />
             </div>
             <group>
-              <field name="image" widget="image" />
+              <field name="image" widget="image" class="oe_avatar" />
             </group>
           </group>
           <notebook>
@@ -41,22 +44,16 @@
                   <field name="roll_number" />
                   <field name="grade_level" />
                   <field name="dob" />
+                  <field name="status" />
+                </group>
+                <group>
                   <field name="age" />
                   <field name="stream"
                     attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
                   <field name="class_teacher" widget="Many2one_link" />
                   <field name="phone_code" />
-                  <field name="phone" />
-                </group>
-                <group>
-                  <field name="country_id" />
-                  <field name="country_code" />
-                  <field name="state_id" />
-                  <field name="street" />
-                  <field name="city" />
-                  <field name="zip" />
-                  <button name="%(School_Management.action_submit)d" string="Submit form"
-                    type="action" confirm="Are you sure to submit?" class="oe_highlight" />
+                  <field name="phone" widget="phone" />
+                  <field name="transport" widget="many2one_avatar" />
                 </group>
               </group>
             </page>
@@ -67,10 +64,8 @@
                   <field name="relation_with_student" />
                 </group>
                 <group>
-                  <field name="phone_parent" />
-                  <field name="email_parent" />
-                  <button name="%(School_Management.action_submit)d" string="Submit form"
-                    type="action" confirm="Are you sure to submit?" class="oe_highlight" />
+                  <field name="phone_parent" widget="phone" />
+                  <field name="email_parent" widget="email" />
                 </group>
               </group>
             </page>
@@ -83,8 +78,24 @@
                 <group>
                   <field name="prev_school_adm_date" />
                   <field name="prev_school_leaving_date" />
-                  <button name="%(School_Management.action_submit)d" string="Submit form"
-                    type="action" confirm="Are you sure to submit?" class="oe_highlight" />
+                </group>
+              </group>
+            </page>
+
+            <page string="Address">
+              <group>
+                <group>
+                  <field name="country_id" />
+                  <field name="country_code" />
+                  <field name="state_id" />
+                </group>
+                <group>
+                  <field name="street" />
+                  <field name="city" />
+                  <field name="zip" />
+                  <button name="action_url" string="URL action" type="object"
+                    confirm="Want to explore URL Action window feature of Odoo ?"
+                    class="oe_highlight" />
                 </group>
               </group>
             </page>
@@ -95,6 +106,7 @@
           <field name="message_ids" options="{'post refresh': 'recipients'}" />
         </div>
       </form>
+
     </field>
   </record>
 
@@ -105,19 +117,29 @@
     <field name="model">school.student</field>
     <field name="arch" type="xml">
       <tree string="Channel"
-      decoration-warning="status == 'applied'"
-    decoration-danger="status == 'rejected'"
-    decoration-info="status == 'cleared_entrance_test'"
-    decoration-primary="status == 'joined_school'"
-    decoration-success="status == 'selected'"
-    >
-        <field name="enroll" />
-        <field name="std_div" />
-        <field name="formatted_address" />
-        <field name="phone" />
-        <field name="phone_parent" />
-        <field name="email_parent" />
-        <field name="status" />
+        decoration-warning="status == 'applied'"
+        decoration-danger="status == 'rejected'"
+        decoration-info="status == 'cleared_entrance_test'"
+        decoration-primary="status == 'joined_school'"
+        decoration-success="status == 'selected'"
+      >
+        <field name="enroll" optional="show" />
+        <field name="std_div" optional="show" />
+        <field name="formatted_address" optional="show" />
+        <field name="phone" optional="show" widget="phone" />
+        <field name="roll_number" optional="hide" />
+        <field name="grade_level" optional="hide" />
+         <field name="fee_status" widget="badge" decoration-success="fee_status == 'paid'"/>
+        <field name="dob" optional="hide" />
+        <field name="phone_parent" optional="hide" widget="phone" />
+        <field name="class_teacher" />
+        <field name="transport" widget="many2one_avatar_user" optional="show" />
+        <field name="email_parent" optional="show" widget="email" />
+        <field name="status" widget="badge" optional="show"
+          decoration-danger="status == 'rejected'"
+          decoration-info="status == 'cleared_entrance_test'"
+          decoration-primary="status == 'joined_school'"
+          decoration-success="status == 'selected'" />
       </tree>
     </field>
   </record>
@@ -148,12 +170,17 @@
           <notebook>
             <page string="Teacher Detail">
               <group>
-                <field name="teacher_id" />
-                <field name="std_div" />
-                <field name="stream"
-                  attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
-                <field name="grade_level" />
-                <field name="phone" />
+                <group>
+                  <field name="teacher_id" />
+                  <field name="std_div" />
+                  <field name="stream"
+                    attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
+                </group>
+                <group>
+                  <field name="image" widget="image" class="oe_avatar" />
+                  <field name="grade_level" />
+                  <field name="phone" widget="phone" />
+                </group>
               </group>
             </page>
           </notebook>
@@ -198,7 +225,6 @@
     <field name="name">Submit Action</field>
     <field name="res_model">school.student</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[]</field>
     <field name="context">{'search_default_filter_10th': 1}</field>
   </record>
 
@@ -206,6 +232,7 @@
     <field name="name">Science Students</field>
     <field name="res_model">school.student</field>
     <field name="view_mode">tree,form</field>
+    <field name="context">{'default_stream' : 'science'}</field>
     <field name="domain">[('stream', '=', 'science')]</field>
   </record>
 
@@ -213,12 +240,14 @@
     <field name="name">Commerce Students</field>
     <field name="res_model">school.student</field>
     <field name="view_mode">tree,form</field>
+    <field name="context">{'default_stream' : 'commerce'}</field>
     <field name="domain">[('stream', '=', 'commerce')]</field>
   </record>
   <record id="action_school_student_arts" model="ir.actions.act_window">
     <field name="name">Arts Students</field>
     <field name="res_model">school.student</field>
     <field name="view_mode">tree,form</field>
+    <field name="context">{'default_stream' : 'arts'}</field>
     <field name="domain">[('stream', '=', 'arts')]</field>
   </record>
   <record id="action_school_teacher" model="ir.actions.act_window">
@@ -227,15 +256,16 @@
     <field name="view_mode">tree,form</field>
   </record>
   <menuitem id="menu_range" name="School" sequence="10" />
-  <menuitem id="menu_data" name="Streams" parent="menu_range" action="action_submit" />
+  <menuitem id="menu_data" name="Streams" parent="menu_range" action="action_submit" sequence="10" />
   <menuitem id="school_teacher_list" name="Class Teacher's List" parent="menu_range"
-    action="action_school_teacher" />
+    action="action_school_teacher" sequence="10" />
   <menuitem id="menu_school_student_science" name="Science" parent="menu_data"
-    action="action_school_student_science" />
+    action="action_school_student_science" sequence="20" />
   <menuitem id="menu_school_student_commerce" name="Commerce " parent="menu_data"
-    action="action_school_student_commerce" />
+    action="action_school_student_commerce" sequence="30" />
   <menuitem id="menu_school_student_arts" name="Arts " parent="menu_data"
-    action="action_school_student_arts" />
+    action="action_school_student_arts" sequence="40" />
+
   <menuitem id="menu_school_icon" name="School"
     web_icon="School_Management,static/description/icon.png" sequence="0" />
 </odoo>
