@@ -1,1 +1,1 @@
-from . import newAdmission
+from . import cancel_admission

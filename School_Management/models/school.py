@@ -8,13 +8,13 @@ class SchoolStudent(models.Model):
     _inherit = ["mail.thread"]
     _description = 'Student Management Module'
     _rec_name="roll_number"
-    _order="name asc"
+    _order="enroll asc"
 
     name = fields.Char(required=True)
     std_div = fields.Char()
     roll_number = fields.Integer()
     phone = fields.Char(required=True, tracking=True)
-    enroll = fields.Char(compute="_compute_enrollment_number", default='ENR-', tracking=True)
+    enroll = fields.Char(readonly=1,tracking=True)
     class_teacher = fields.Many2one('school.teacher', compute="_compute_class_teacher", store=True)
     dob = fields.Date(tracking=True)
     age = fields.Integer(compute="_compute_age", store=True)
@@ -100,11 +100,13 @@ class SchoolStudent(models.Model):
                     student.class_teacher = teacher.id if teacher else False
                 else:
                     student.class_teacher = False
+                    
     @api.constrains('name')
     def check_name(self): 
         for rec in self:    
-            if not 10 <= len(rec.name) <= 15 or not re.match(r"^[a-zA-Z][ a-zA-Z]*", rec.name):
-                raise ValidationError(_('Name field only contain 10-15 alphabets and spaces'))              
+            if not 4 <= len(rec.name) <= 15 or not re.match(r"^[a-zA-Z][ a-zA-Z]*", rec.name):
+                raise ValidationError(_('Name field only contain 10-15 alphabets and spaces'))   
+                       
     status=fields.Selection([
         ('applied',"Applied"),
         ('cleared_entrance_test',"Cleared"),
@@ -160,15 +162,10 @@ class SchoolStudent(models.Model):
                 if duplicate_phone:
                     raise ValidationError('Phone number is already assigned to another student!')
 
-    @api.depends('name')
-    def _compute_enrollment_number(self):
-        enroll_id = 1
-        for record in self:
-            if record.name:
-                record.enroll = 'ENR-' + str(enroll_id).zfill(4)
-                enroll_id += 1
-            else:
-                record.enroll = ''
+    @api.model
+    def create(self,vals):
+        vals['enroll']=self.env['ir.sequence'].next_by_code("school.student")
+        return super(SchoolStudent,self).create(vals)
 
     @api.constrains('phone','phone_parent')
     def _check_phone_number(self):
