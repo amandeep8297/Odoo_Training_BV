@@ -14,8 +14,9 @@
           [Registration Form]
         </h5>
         <header>
-          <button id="button_create_admission" name="%(action_create_admission)d"
-            string="Create new Admission" class="btn-primary" type="action" />
+          <button name="%(action_submit)d" string="Create" type="action" confirm="Sure to submit" class="btn-primary" />
+          <button id="button_create_admission" name="%(action_create_admission)d" string="Admission Wizard" class="btn btn-default" type="action" />
+          <button special="cancel" string="Cancel" class="btn btn-default"/>      
           <field name="status" options="{'clickable':'1'}" widget="statusbar" nolabel="1" />
         </header>
         <sheet>
@@ -44,12 +45,11 @@
                   <field name="roll_number" />
                   <field name="grade_level" />
                   <field name="dob" />
-                  <field name="status" />
+
                 </group>
                 <group>
                   <field name="age" />
-                  <field name="stream"
-                    attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
+                  <field name="stream" attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
                   <field name="class_teacher" widget="Many2one_link" />
                   <field name="phone_code" />
                   <field name="phone" widget="phone" />
@@ -84,22 +84,23 @@
 
             <page string="Address">
               <group>
-                <group>
-                  <field name="country_id" />
-                  <field name="country_code" />
-                  <field name="state_id" />
-                </group>
-                <group>
-                  <field name="street" />
-                  <field name="city" />
-                  <field name="zip" />
-                  <button name="action_url" string="URL action" type="object"
-                    confirm="Want to explore URL Action window feature of Odoo ?"
-                    class="oe_highlight" />
-                </group>
+                <span class="o_form_label o_td_label" name="address_name">
+                  <b>Address</b>
+                </span>
+                <div class="o_address_format">
+                  <field name="street" placeholder="Street" class="o_address_street" />
+                  <field name="city" placeholder="City" class="o_address_city" />
+                  <field name="state_id" class="o_address_state" placeholder="State" />
+                  <field name="zip" placeholder="ZIP" class="o_address_zip" />
+                  <div name="partner_address_country" class="d-flex justify-content-between">
+                    <field name="country_id" placeholder="Country" class="o_address_country" />
+                    <field name="country_code" placeholder="Country Code" class="o_address_country" />
+                  </div>
+                </div>
               </group>
             </page>
           </notebook>
+          <button name="action_url" string="URL action" type="object" confirm="Want to explore URL Action window feature of Odoo ?" class="oe_highlight" />
         </sheet>
         <div class="oe_chatter">
           <field name="message_follower_ids" />
@@ -116,33 +117,24 @@
     <field name="name">School module tree</field>
     <field name="model">school.student</field>
     <field name="arch" type="xml">
-      <tree string="Channel"
-        decoration-warning="status == 'applied'"
-        decoration-danger="status == 'rejected'"
-        decoration-info="status == 'cleared_entrance_test'"
-        decoration-primary="status == 'joined_school'"
-        decoration-success="status == 'selected'"
-      >
+      <tree string="Channel" decoration-warning="status == 'applied'" decoration-danger="status == 'rejected'" decoration-info="status == 'cleared_entrance_test'" decoration-primary="status == 'joined_school'" decoration-success="status == 'selected'">
         <field name="enroll" optional="show" />
         <field name="std_div" optional="show" />
         <field name="formatted_address" optional="show" />
         <field name="phone" optional="show" widget="phone" />
         <field name="roll_number" optional="hide" />
         <field name="grade_level" optional="hide" />
-         <field name="fee_status" widget="badge" decoration-success="fee_status == 'paid'"/>
+        <field name="fee_status" widget="badge" decoration-success="fee_status == 'paid'"/>
         <field name="dob" optional="hide" />
         <field name="phone_parent" optional="hide" widget="phone" />
         <field name="class_teacher" />
         <field name="transport" widget="many2one_avatar_user" optional="show" />
         <field name="email_parent" optional="show" widget="email" />
-        <field name="status" widget="badge" optional="show"
-          decoration-danger="status == 'rejected'"
-          decoration-info="status == 'cleared_entrance_test'"
-          decoration-primary="status == 'joined_school'"
-          decoration-success="status == 'selected'" />
+        <field name="status" widget="badge" optional="show" decoration-danger="status == 'rejected'" decoration-info="status == 'cleared_entrance_test'" decoration-primary="status == 'joined_school'" decoration-success="status == 'selected'" />
       </tree>
     </field>
   </record>
+
   <record model="ir.ui.view" id="view_form_teacher_id">
     <field name="name">Teacher Module Form</field>
     <field name="model">school.teacher</field>
@@ -173,8 +165,7 @@
                 <group>
                   <field name="teacher_id" />
                   <field name="std_div" />
-                  <field name="stream"
-                    attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
+                  <field name="stream" attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
                 </group>
                 <group>
                   <field name="image" widget="image" class="oe_avatar" />
@@ -224,7 +215,7 @@
   <record model="ir.actions.act_window" id="action_submit">
     <field name="name">Submit Action</field>
     <field name="res_model">school.student</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">tree,form,kanban</field>
     <field name="context">{'search_default_filter_10th': 1}</field>
   </record>
 
@@ -253,19 +244,14 @@
   <record id="action_school_teacher" model="ir.actions.act_window">
     <field name="name">Class Teacher</field>
     <field name="res_model">school.teacher</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">tree,form,kanban</field>
   </record>
   <menuitem id="menu_range" name="School" sequence="10" />
   <menuitem id="menu_data" name="Streams" parent="menu_range" action="action_submit" sequence="10" />
-  <menuitem id="school_teacher_list" name="Class Teacher's List" parent="menu_range"
-    action="action_school_teacher" sequence="10" />
-  <menuitem id="menu_school_student_science" name="Science" parent="menu_data"
-    action="action_school_student_science" sequence="20" />
-  <menuitem id="menu_school_student_commerce" name="Commerce " parent="menu_data"
-    action="action_school_student_commerce" sequence="30" />
-  <menuitem id="menu_school_student_arts" name="Arts " parent="menu_data"
-    action="action_school_student_arts" sequence="40" />
+  <menuitem id="school_teacher_list" name="Class Teacher's List" parent="menu_range" action="action_school_teacher" sequence="10" />
+  <menuitem id="menu_school_student_science" name="Science" parent="menu_data" action="action_school_student_science" sequence="20" />
+  <menuitem id="menu_school_student_commerce" name="Commerce " parent="menu_data" action="action_school_student_commerce" sequence="30" />
+  <menuitem id="menu_school_student_arts" name="Arts " parent="menu_data" action="action_school_student_arts" sequence="40" />
 
-  <menuitem id="menu_school_icon" name="School"
-    web_icon="School_Management,static/description/icon.png" sequence="0" />
+  <menuitem id="menu_school_icon" name="School" web_icon="School_Management,static/description/icon.png" sequence="0" />
 </odoo>
