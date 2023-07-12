@@ -1,9 +1,10 @@
-from odoo import fields, models
+from odoo import fields,api, models
 
 class SchoolTeacher(models.Model):
     _name = 'school.teacher'
     _description = 'Teacher'
     _inherit = ["mail.thread"]
+   
     name = fields.Char(string='Class Teacher Name',tracking=True, required=True,store=True)
     active = fields.Boolean('Active', default=True)
     teacher_id = fields.Integer(string='Class-Teacher ID',tracking=True, required=True)
@@ -20,3 +21,5 @@ class SchoolTeacher(models.Model):
     _sql_constraints = [
         ('unique_teacher', 'unique (std_div, stream)', 'Teacher name already exists!'),
     ]
+    
+   

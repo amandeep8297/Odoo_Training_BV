@@ -2,7 +2,7 @@ from datetime import date
 from odoo import fields, api, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.translate import _
-
+import re
 class SchoolStudent(models.Model):
     _name = "school.student"
     _inherit = ["mail.thread"]
@@ -100,7 +100,11 @@ class SchoolStudent(models.Model):
                     student.class_teacher = teacher.id if teacher else False
                 else:
                     student.class_teacher = False
-                           
+    @api.constrains('name')
+    def check_name(self): 
+        for rec in self:    
+            if not 10 <= len(rec.name) <= 15 or not re.match(r"^[a-zA-Z][ a-zA-Z]*", rec.name):
+                raise ValidationError(_('Name field only contain 10-15 alphabets and spaces'))              
     status=fields.Selection([
         ('applied',"Applied"),
         ('cleared_entrance_test',"Cleared"),
@@ -138,7 +142,16 @@ class SchoolStudent(models.Model):
                 student.age = check_age
             else:
                 student.age = 0
+    def name_get(self):
+        return [(record.id, '%s - %s' %(record.enroll,record.name)) for record in self]
 
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        if args is None:
+            args = []
+        domain = args + ['|',('name', operator, name), ('enroll', operator, name)]
+        return super(SchoolStudent, self).search(domain, limit=limit).name_get()
+    
     @api.constrains('phone')
     def _check_unique_phone_number(self):
         for student in self:
