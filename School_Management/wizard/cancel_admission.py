@@ -17,3 +17,4 @@ class CancelAdmissionWizard(models.TransientModel):
     def action_cancel_admission(self):
         for rec in self:
             rec.student_id.unlink()
+            

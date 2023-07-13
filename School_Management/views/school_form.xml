@@ -113,7 +113,6 @@
 
   <!-- Tree View -->
   <record id="student_view_tree" model="ir.ui.view">
-    
     <field name="name">School module tree</field>
     <field name="model">school.student</field>
     <field name="arch" type="xml">
@@ -206,8 +205,8 @@
         <group expand="0" string="Group By">
           <filter string="Birth Month" name="birth_month" context="{'group_by': 'birth_month'}" />
         </group>
-        <field name="std_div" string="Standard &amp; Division" />
-        <filter name="filter_10th" string="10th Standard" domain="[('std_div', '=', '10th')]" />
+        <field name="grade_level" string="Standard &amp; Division" />
+        <filter name="filter_10" string="10th Standard" domain="[('grade_level', '=', '10')]" />
       </search>
     </field>
   </record>
@@ -216,7 +215,6 @@
     <field name="name">Enrollment ID</field>
     <field name="code">school.student</field>
     <field name="prefix">ENR-000</field>
-    <field name="company_id" eval="False"></field>
   </record>
 
   <!-- Action -->
@@ -224,7 +222,7 @@
     <field name="name">Submit Action</field>
     <field name="res_model">school.student</field>
     <field name="view_mode">tree,form,kanban</field>
-    <field name="context">{'search_default_filter_10th': 1}</field>
+    <field name="context">{'search_default_filter_10': 1}</field>
   </record>
 
   <record id="action_school_student_science" model="ir.actions.act_window">

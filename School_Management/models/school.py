@@ -146,7 +146,8 @@ class SchoolStudent(models.Model):
                 student.age = 0
     def name_get(self):
         return [(record.id, '%s - %s' %(record.enroll,record.name)) for record in self]
-
+    
+    
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
         if args is None:
