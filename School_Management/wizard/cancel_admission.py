@@ -4,7 +4,7 @@ class CancelAdmissionWizard(models.TransientModel):
     _name="cancel_admission.wizard"
     _description="Cancel Admission Wizard"
     
-    student_id=fields.Many2one('school.student',required=True)
+    student_id=fields.Many2one('school.student',required=False)
     reason=fields.Text()
     date_cancel=fields.Date(string="Cancellation Date")
 

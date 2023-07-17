@@ -1,1 +1,1 @@
-from . import school,teacher
+from . import school,teacher,sale_order

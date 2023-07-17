@@ -7,7 +7,7 @@
     <field name="arch" type="xml">
       <form string="Cancel Admission Form">
         <group>
-          <field name="student_id"/>
+          <field name="student_id" required="True"/>
           <field name="reason"/>
           <field name="date_cancel"/>
         </group>

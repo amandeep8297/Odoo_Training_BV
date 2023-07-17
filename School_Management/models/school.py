@@ -55,6 +55,7 @@ class SchoolStudent(models.Model):
         ('half_paid', 'Half Paid'), 
         ('pending', 'Pending')
     ], string='Fee Status',store=True)
+    sibling_ids=fields.One2many('school.teacher','sibling',string='Name of Sibling ')
     transport=fields.Many2one('res.users',string="Transport Incharge")
     image=fields.Image(string="Display picture")
     street = fields.Char()
@@ -101,6 +102,14 @@ class SchoolStudent(models.Model):
                 else:
                     student.class_teacher = False
                     
+    def rainbow_effect(self):
+        return{
+            'effect':{
+                'fadeout':'fast',
+                'message':'Saved Successfully',
+                'type':'rainbow_man'
+            }
+        }               
     @api.constrains('name')
     def check_name(self): 
         for rec in self:    

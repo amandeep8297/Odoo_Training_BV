@@ -5,7 +5,7 @@ class SchoolTeacher(models.Model):
     _description = 'Teacher'
     _inherit = ["mail.thread"]
    
-    name = fields.Char(string='Class Teacher Name',tracking=True, required=True,store=True)
+    name = fields.Char(tracking=True, required=True,store=True)
     active = fields.Boolean('Active', default=True)
     teacher_id = fields.Integer(string='Class-Teacher ID',tracking=True, required=True)
     grade_level = fields.Integer(string='Grade Level',required=True,store=True)
@@ -18,8 +18,24 @@ class SchoolTeacher(models.Model):
         ('commerce', 'Commerce'),
         ('arts', 'Arts'),
     ], string='Stream', store=True)
+    sibling=fields.Many2one("school.student",string="Sibling ID")
     _sql_constraints = [
         ('unique_teacher', 'unique (std_div, stream)', 'Teacher name already exists!'),
     ]
+    street = fields.Char()
+    city = fields.Char()
+    state_id = fields.Many2one('res.country.state', domain="[('country_id', '=', country_id)]")
+    country_id = fields.Many2one('res.country')
+    country_code=fields.Char(related="country_id.code")
+    zip = fields.Char(string='ZIP')
+    phone_code = fields.Char(readonly=True)
+    def rainbow_effect(self):
+        return{
+            'effect':{
+                'fadeout':'fast',
+                'message':'Saved Successfully',
+                'type':'rainbow_man'
+            }
+        } 
     
    
