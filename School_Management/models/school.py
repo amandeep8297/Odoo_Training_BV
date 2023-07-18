@@ -57,7 +57,7 @@ class SchoolStudent(models.Model):
     ], string='Fee Status',store=True)
     sibling_ids=fields.One2many('school.teacher','sibling',string='Name of Sibling ')
     transport=fields.Many2one('res.users',string="Transport Incharge")
-    image=fields.Image(string="Display picture")
+    image=fields.Binary(string="Display picture")
     street = fields.Char()
     city = fields.Char()
     state_id = fields.Many2one('res.country.state', domain="[('country_id', '=', country_id)]")
@@ -81,6 +81,12 @@ class SchoolStudent(models.Model):
             'target':'new',
             'url':'https://www.odoo.com/documentation/16.0/'
         }
+        
+    def copy(self,default=None):
+        if default is None:
+            default={}
+        return super(SchoolStudent,self).copy(default)
+    
     @api.depends('std_div', 'stream', 'grade_level')
     def _compute_class_teacher(self):
         for student in self:

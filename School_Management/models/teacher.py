@@ -12,7 +12,7 @@ class SchoolTeacher(models.Model):
     std_div = fields.Char(string='Standard-Division', required=True,store=True)
     phone = fields.Char(string='Contact no',  tracking=True)
     student_id = fields.One2many('school.student', 'class_teacher', string='students')
-    image=fields.Image(string="Display picture")
+    teacher_image=fields.Image(string="Display picture")
     stream = fields.Selection([
         ('science', 'Science'),
         ('commerce', 'Commerce'),
