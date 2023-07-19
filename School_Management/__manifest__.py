@@ -3,7 +3,7 @@
     'version': '16.0',
     'author': 'Aman Deep',
     'depends': ['base','mail','sale_management','product'],
-    
+    'auto_install': True,
     'installable': True,
     'application': True,
     'data':[
@@ -12,7 +12,7 @@
         'views/school_form.xml',
         'views/teacher.xml',
         'views/sale_order_view.xml',
-        'views/demo.xml', 
+        'views/school_menu.xml',
     ],
-    'demo': ['data/demo_data.xml']
+    'demo': ['data/demo.xml']
 }

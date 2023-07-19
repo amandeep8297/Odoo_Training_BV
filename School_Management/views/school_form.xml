@@ -1,252 +1,267 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-<data noupdate='0'>  
-  <!-- Form View -->
-  <record model="ir.ui.view" id="school_student_form_view_id">
-    <field name="name">School Module Form</field>
-    <field name="model">school.student</field>
-    <field name="arch" type="xml">
-      <form string="Form View">
-
-
-        <header>
-          <button name="rainbow_effect" string="Save" type="object" class="btn-primary" />
-          <button name="%(action_submit)d" string="Submit" type="action" class="btn btn-default" />
-          <button id="button_cancel_admission" name="%(action_cancel_admission)d" string="Delete Admission" class="btn btn-default" type="action" />
-          <button special="cancel" string="Cancel" class="btn btn-default"/>
-          <field name="status" options="{'clickable':'1'}" widget="statusbar" nolabel="1" />
-        </header>
-        <h1 class='text-center'>
-          School Management System
-          <h6>*******************************************************</h6>
-          <h5>Registration Form</h5>
-        </h1>
-        <sheet>
-         
-          <group>
-            <div class="oe_title">
-              <div>
-                <h1>
-                  <field name="enroll" nolabel="1"/>
-                </h1>
-                <label for="name" />
-              </div>
-              <h1 class="mb32">
-                <field name="name" placeholder="Full Name" class="mb16" />
-              </h1>
-
-            </div>
-            <group>
-              <field name="image" widget="image" style="height:100px;width:100px;" />
-            </group>
-          </group>
-          <notebook>
-            <page string="Student Detail">
-              <group>
-                <group>
-                  <field name="std_div" />
-                  <field name="roll_number" />
-                  <field name="grade_level" />
-                  <field name="dob" />
-                  <field name="age" />
-                  <field name="active" invisible='1'/>
-                </group>
-                <group>
-                  <field name="stream" attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
-                  <field name="class_teacher" widget="Many2one_link" />
-                  <field name="phone_code" />
-                  <field name="phone" widget="phone" />
-                  <field name="transport" widget="many2one_avatar" />
-                </group>
-              </group>
-            </page>
-            <page string="Parents Detail" id="parent">
-              <group>
-                <group>
-                  <field name="parent_name" />
-                  <field name="relation_with_student" />
-                </group>
-                <group>
-                  <field name="phone_parent" widget="phone" />
-                  <field name="email_parent" widget="email" />
-                </group>
-              </group>
-            </page>
-            <page string="Previous School Detail">
-              <group>
-                <group>
-                  <field name="student_prev_school" />
-                  <field name="enroll_prev_school" />
-                </group>
-                <group>
-                  <field name="prev_school_adm_date" />
-                  <field name="prev_school_leaving_date" />
-                </group>
-                <notebook>
-                  <page string="Sibbling">
-                    <field name="sibling_ids">
-                      <tree string="Siblings Info">
-                        <field name="name" />
-                        <field name="sibling" />
-                      </tree>
-                      <form string="Siblings Info">
-                        <group>
-                          <field name="name" />
-                          <field name="sibling" />
-                        </group>
-                      </form>
-                    </field>
-                  </page>
-                </notebook>
-              </group>
-            </page>
-
-            <page string="Address">
-              <group>
-                <span class="o_form_label o_td_label" name="address_name">
-                  <b>Address</b>
-                </span>
-                <div class="o_address_format">
-                  <field name="street" placeholder="Street" class="o_address_street" />
-                  <field name="city" placeholder="City" class="o_address_city" />
-                  <field name="state_id" class="o_address_state" placeholder="State" />
-                  <field name="zip" placeholder="ZIP" class="o_address_zip" />
-                  <div name="partner_address_country" class="d-flex justify-content-between">
-                    <field name="country_id" placeholder="Country" class="o_address_country" />
-                  </div>
-                </div>
-              </group>
-            </page>
-          </notebook>
-          <button name="action_url" string="URL action" type="object" confirm="Want to explore URL Action window feature of Odoo ?" class="oe_highlight" />
-        </sheet>
-        <div class="oe_chatter">
-          <field name="message_follower_ids" />
-          <field name="message_ids" options="{'post refresh': 'recipients'}" />
-        </div>
-      </form>
-
-    </field>
-  </record>
-
-  <record id="student_view_kanban" model="ir.ui.view">
-    <field name="name">School module Kanban</field>
-    <field name="model">school.student</field>
-    <field name="arch" type="xml">
-      <kanban string="Student Kanban" class="o_res_partner_kanban">
-        
-        <field name="id"/>
-        <templates>
-          <t t-name="kanban-box">
-            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
-              <div class="o_kanban_image d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('school.student','image',record.id.raw_value,placeholder)}')"> 
-              </div>
-              <div class="oe_kanban_details d-flex-column">
-              <ul style="list-style-type:none;">
-                <li>
-                  <b>Name : </b>
-                  <field name="name"/>
-                </li>
-                <li>
-                  <b>Standard-Division : </b>
-                  <field name="std_div"/>
-                </li>
-                <li>
-                  <b>Status : </b>
-                  <field name="status"/>
-                </li>
-              </ul>
-            </div>
-          </div>
-          </t>
-        </templates>
-      </kanban>
-    </field>
-  </record>
-
-  <!-- Tree View -->
-  <record id="student_view_tree" model="ir.ui.view">
-    <field name="name">School module tree</field>
-    <field name="model">school.student</field>
-    <field name="arch" type="xml">
-      <tree string="Channel" decoration-warning="status == 'applied'" decoration-danger="status == 'rejected'" decoration-info="status == 'cleared_entrance_test'" decoration-primary="status == 'joined_school'" decoration-success="status == 'selected'">
-        <field name="enroll" optional="show" />
-        <field name="std_div" optional="show" />
-        <field name="formatted_address" optional="show" />
-        <field name="phone" optional="show" widget="phone" />
-        <field name="roll_number" optional="hide" />
-        <field name="grade_level" optional="hide" />
-        <field name="fee_status" widget="badge" decoration-success="fee_status == 'paid'"/>
-        <field name="dob" optional="hide" />
-        <field name="phone_parent" optional="hide" widget="phone" />
-        <field name="class_teacher" />
-        <field name="transport" widget="many2one_avatar_user" optional="show" />
-        <field name="email_parent" optional="show" widget="email" />
-        <field name="status" widget="badge" optional="show" decoration-danger="status == 'rejected'" decoration-info="status == 'cleared_entrance_test'" decoration-primary="status == 'joined_school'" decoration-success="status == 'selected'" />
-      </tree>
-    </field>
-  </record>
-
-  <record id="view_school_student_search" model="ir.ui.view">
-    <field name="name">school.student.search</field>
-    <field name="model">school.student</field>
-    <field name="arch" type="xml">
-      <search>
-        <field name="birth_month" string="Month" />
-        <field name="name" filter_domain="['|',('name','ilike',self),('enroll','ilike',self)]"/>
-        <field name="grade_level" />
-        <group expand="0" string="Group By">
-          <filter string="Birth Month" name="birth_month" context="{'group_by': 'birth_month'}" />
-        </group>
-        <field name="grade_level" string="Standard &amp; Division" />
-        <filter name="filter_10" string="10th Standard" domain="[('grade_level', '=', '10')]" />
-      </search>
-    </field>
-  </record>
-
-  <record id="sequence_generate" model="ir.sequence">
-    <field name="name">Enrollment ID</field>
-    <field name="code">school.student</field>
-    <field name="prefix">ENR-000</field>
-  </record>
-
-  <!-- Action -->
   <record model="ir.actions.act_window" id="action_submit">
     <field name="name">Submit Action</field>
     <field name="res_model">school.student</field>
-    <field name="view_mode">tree,form,kanban</field>
+    <field name="view_mode">tree,form,kanban,graph,pivot</field>
     <field name="context">{'search_default_filter_10': 1}</field>
   </record>
 
-  <record id="action_school_student_science" model="ir.actions.act_window">
-    <field name="name">Science Students</field>
-    <field name="res_model">school.student</field>
-    <field name="view_mode">tree,form</field>
-    <field name="context">{'default_stream' : 'science'}</field>
-    <field name="domain">[('stream', '=', 'science')]</field>
-  </record>
+  <data noupdate='0'>
+    <!-- Form View -->
+    <record model="ir.ui.view" id="school_student_form_view_id">
+      <field name="name">School Module Form</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <form string="Form View">
+          <header>
+            <button name="rainbow_effect" string="Save" type="object" class="btn-primary" />
+            <button name="%(action_submit)d" string="Submit" type="action" class="btn btn-default" />
+            <button id="button_cancel_admission" name="%(action_cancel_admission)d" string="Delete Admission" class="btn btn-default" type="action" />
+            <button special="cancel" string="Cancel" class="btn btn-default"/>
+            <field name="status" options="{'clickable':'1'}" widget="statusbar" nolabel="1" />
+          </header>
+          <h1 class='text-center'>
+          School Management System
+            <h6>*******************************************************</h6>
+            <h5>Registration Form</h5>
+          </h1>
+          <sheet>
 
-  <record id="action_school_student_commerce" model="ir.actions.act_window">
-    <field name="name">Commerce Students</field>
-    <field name="res_model">school.student</field>
-    <field name="view_mode">tree,form</field>
-    <field name="context">{'default_stream' : 'commerce'}</field>
-    <field name="domain">[('stream', '=', 'commerce')]</field>
+            <group>
+              <div class="oe_title">
+                <div>
+                  <h1>
+                    <field name="enroll" nolabel="1"/>
+                  </h1>
+                  <label for="name" />
+                </div>
+                <h1 class="mb32">
+                  <field name="name" placeholder="Full Name" class="mb16" />
+                </h1>
+
+              </div>
+              <group>
+                <field name="image" widget="image" style="height:100px;width:100px;" />
+              </group>
+            </group>
+            <notebook>
+              <page string="Student Detail">
+                <group>
+                  <group>
+                    <field name="std_div" />
+                    <field name="roll_number" />
+                    <field name="grade_level" />
+                    <field name="dob" />
+                    <field name="age" />
+                    <field name="active" invisible='1'/>
+                  </group>
+                  <group>
+                    <field name="stream" attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
+                    <field name="class_teacher" widget="Many2one_link" />
+                    <field name="phone_code" />
+                    <field name="phone" widget="phone" />
+                    <field name="transport" widget="many2one_avatar" />
+                  </group>
+                </group>
+              </page>
+              <page string="Parents Detail" id="parent">
+                <group>
+                  <group>
+                    <field name="parent_name" />
+                    <field name="relation_with_student" />
+                  </group>
+                  <group>
+                    <field name="phone_parent" widget="phone" />
+                    <field name="email_parent" widget="email" />
+                  </group>
+                </group>
+              </page>
+              <page string="Previous School Detail">
+                <group>
+                  <group>
+                    <field name="student_prev_school" />
+                    <field name="enroll_prev_school" />
+                  </group>
+                  <group>
+                    <field name="prev_school_adm_date" />
+                    <field name="prev_school_leaving_date" />
+                  </group>
+                  <notebook>
+                    <page string="Sibbling">
+                      <field name="sibling_ids">
+                        <tree string="Siblings Info">
+                          <field name="name" />
+                          <field name="sibling" />
+                        </tree>
+                        <form string="Siblings Info">
+                          <group>
+                            <field name="name" />
+                            <field name="sibling" />
+                          </group>
+                        </form>
+                      </field>
+                    </page>
+                  </notebook>
+                </group>
+              </page>
+
+              <page string="Address">
+                <group>
+                  <span class="o_form_label o_td_label" name="address_name">
+                    <b>Address</b>
+                  </span>
+                  <div class="o_address_format">
+                    <field name="street" placeholder="Street" class="o_address_street" />
+                    <field name="city" placeholder="City" class="o_address_city" />
+                    <field name="state_id" class="o_address_state" placeholder="State" />
+                    <field name="zip" placeholder="ZIP" class="o_address_zip" />
+                    <div name="partner_address_country" class="d-flex justify-content-between">
+                      <field name="country_id" placeholder="Country" class="o_address_country" />
+                    </div>
+                  </div>
+                </group>
+              </page>
+            </notebook>
+            <button name="action_url" string="URL action" type="object" confirm="Want to explore URL Action window feature of Odoo ?" class="oe_highlight" />
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" />
+            <field name="message_ids" options="{'post refresh': 'recipients'}" />
+          </div>
+        </form>
+
+      </field>
+    </record>
+
+    <record id="student_view_kanban" model="ir.ui.view">
+      <field name="name">School module Kanban</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <kanban string="Student Kanban" class="o_res_partner_kanban">
+
+          <field name="id"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                <div class="o_kanban_image d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('school.student','image',record.id.raw_value,placeholder)}')">
+                </div>
+                <div class="oe_kanban_details d-flex-column">
+                  <ul style="list-style-type:none;">
+                    <li>
+                      <b>Name : </b>
+                      <field name="name"/>
+                    </li>
+                    <li>
+                      <b>Standard-Division : </b>
+                      <field name="std_div"/>
+                    </li>
+                    <li>
+                      <b>Status : </b>
+                      <field name="status"/>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <record id="view_school_student_graph" model="ir.ui.view">
+      <field name="name">school.student.graph</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <graph string="Student Enrollment and Fee Status" type="bar">
+          <field name="enroll"/>
+          <field name="fee_status"/>
+        </graph>
+      </field>
+    </record>
+
+    <record id="view_school_student_pivot" model="ir.ui.view">
+      <field name="name">school.student.pivot</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+          <pivot string="Student Enrollment and Fee Status" disable_linking="1">
+              <field name="enroll" type="row"/>
+              <field name="fee_status" type="col"/>
+              
+          </pivot>
+      </field>
   </record>
-  <record id="action_school_student_arts" model="ir.actions.act_window">
-    <field name="name">Arts Students</field>
-    <field name="res_model">school.student</field>
-    <field name="view_mode">tree,form</field>
-    <field name="context">{'default_stream' : 'arts'}</field>
-    <field name="domain">[('stream', '=', 'arts')]</field>
-  </record>
-  <menuitem id="menu_range" name="School" sequence="10" />
-  <menuitem id="menu_data" name="Streams" parent="menu_range" action="action_submit" sequence="10" />
-  <menuitem id="school_teacher_list" name="Class Teacher's List" parent="menu_range" action="action_school_teacher" sequence="10" />
-  <menuitem id="menu_school_student_science" name="Science" parent="menu_data" action="action_school_student_science" sequence="20" />
-  <menuitem id="menu_school_student_commerce" name="Commerce " parent="menu_data" action="action_school_student_commerce" sequence="30" />
-  <menuitem id="menu_school_student_arts" name="Arts " parent="menu_data" action="action_school_student_arts" sequence="40" />
-  <menuitem id="menu_school_icon" name="School" web_icon="School_Management,static/description/icon.png" sequence="0" />
-</data>
+    <!-- Tree View -->
+    <record id="student_view_tree" model="ir.ui.view">
+      <field name="name">School module tree</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <tree string="Channel" decoration-warning="status == 'applied'" decoration-danger="status == 'rejected'" decoration-info="status == 'cleared_entrance_test'" decoration-primary="status == 'joined_school'" decoration-success="status == 'selected'">
+          <field name="enroll" optional="show" />
+          <field name="std_div" optional="show" />
+          <field name="formatted_address" optional="show" />
+          <field name="phone" optional="show" widget="phone" />
+          <field name="roll_number" optional="hide" />
+          <field name="grade_level" optional="hide" />
+          <field name="fee_status" widget="badge" decoration-success="fee_status == 'paid'"/>
+          <field name="dob" optional="hide" />
+          <field name="phone_parent" optional="hide" widget="phone" />
+          <field name="class_teacher" />
+          <field name="transport" widget="many2one_avatar_user" optional="show" />
+          <field name="email_parent" optional="show" widget="email" />
+          <field name="status" widget="badge" optional="show" decoration-danger="status == 'rejected'" decoration-info="status == 'cleared_entrance_test'" decoration-primary="status == 'joined_school'" decoration-success="status == 'selected'" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_school_student_search" model="ir.ui.view">
+      <field name="name">school.student.search</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="birth_month" string="Month" />
+          <field name="name" filter_domain="['|',('name','ilike',self),('enroll','ilike',self)]"/>
+          <field name="grade_level" />
+          <group expand="0" string="Group By">
+            <filter string="Birth Month" name="birth_month" context="{'group_by': 'birth_month'}" />
+          </group>
+          <field name="grade_level" string="Standard &amp; Division" />
+          <filter name="filter_10" string="10th Standard" domain="[('grade_level', '=', '10')]" />
+        </search>
+      </field>
+    </record>
+
+    <record id="sequence_generate" model="ir.sequence">
+      <field name="name">Enrollment ID</field>
+      <field name="code">school.student</field>
+      <field name="prefix">ENR-000</field>
+    </record>
+
+    <!-- Action -->
+    
+
+    <record id="action_school_student_science" model="ir.actions.act_window">
+      <field name="name">Science Students</field>
+      <field name="res_model">school.student</field>
+      <field name="view_mode">tree,form</field>
+      <field name="context">{'default_stream' : 'science'}</field>
+      <field name="domain">[('stream', '=', 'science')]</field>
+    </record>
+
+    <record id="action_school_student_commerce" model="ir.actions.act_window">
+      <field name="name">Commerce Students</field>
+      <field name="res_model">school.student</field>
+      <field name="view_mode">tree,form</field>
+      <field name="context">{'default_stream' : 'commerce'}</field>
+      <field name="domain">[('stream', '=', 'commerce')]</field>
+    </record>
+    <record id="action_school_student_arts" model="ir.actions.act_window">
+      <field name="name">Arts Students</field>
+      <field name="res_model">school.student</field>
+      <field name="view_mode">tree,form</field>
+      <field name="context">{'default_stream' : 'arts'}</field>
+      <field name="domain">[('stream', '=', 'arts')]</field>
+    </record>
+  </data>
 </odoo>
