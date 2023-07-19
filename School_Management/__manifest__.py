@@ -13,5 +13,6 @@
         'views/teacher.xml',
         'views/sale_order_view.xml',
         'views/demo.xml', 
-    ]
+    ],
+    'demo': ['data/demo_data.xml']
 }
