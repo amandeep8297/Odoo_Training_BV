@@ -14,5 +14,6 @@
         'views/sale_order_view.xml',
         'views/school_menu.xml',
     ],
+    'images': ['static/description/icon.png'],
     'demo': ['data/demo.xml']
 }

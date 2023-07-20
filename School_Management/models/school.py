@@ -1,11 +1,11 @@
-from datetime import date
+from datetime import date, timedelta
 from odoo import fields, api, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.translate import _
 import re
 class SchoolStudent(models.Model):
     _name = "school.student"
-    _inherit = ["mail.thread"]
+    _inherit = ['mail.thread', 'base']
     _description = 'Student Management Module'
     _rec_name="roll_number"
     _order="enroll asc"
@@ -159,6 +159,8 @@ class SchoolStudent(models.Model):
                 student.age = check_age
             else:
                 student.age = 0
+                
+   
     def name_get(self):
         return [(record.id, '%s - %s' %(record.enroll,record.name)) for record in self]
     
@@ -196,6 +198,14 @@ class SchoolStudent(models.Model):
         for rec in self:
             if rec.dob and rec.dob > today:
                 raise ValidationError(_("Invalid Date of Birth."))
+            
+    #Using One2many Relation         
+    sale_order_line_ids = fields.One2many('sale.order.line','student_id',string='Sale Order Lines')
+    
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+    
+    student_id = fields.Many2one('school.student',string='Student',ondelete='restrict')
 
 
 

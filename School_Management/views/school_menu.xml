@@ -6,5 +6,4 @@
     <menuitem id="menu_school_student_science" name="Science" parent="menu_data" action="action_school_student_science" sequence="20" />
     <menuitem id="menu_school_student_commerce" name="Commerce " parent="menu_data" action="action_school_student_commerce" sequence="30" />
     <menuitem id="menu_school_student_arts" name="Arts " parent="menu_data" action="action_school_student_arts" sequence="40" />
-    <menuitem id="menu_school_icon" name="School" web_icon="School_Management,static/description/icon.png" sequence="0" />
 </odoo>

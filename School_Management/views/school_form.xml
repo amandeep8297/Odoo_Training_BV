@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-  <record model="ir.actions.act_window" id="action_submit">
-    <field name="name">Submit Action</field>
-    <field name="res_model">school.student</field>
-    <field name="view_mode">tree,form,kanban,graph,pivot</field>
-    <field name="context">{'search_default_filter_10': 1}</field>
-  </record>
 
   <data noupdate='0'>
     <!-- Form View -->
@@ -14,6 +8,8 @@
       <field name="name">School Module Form</field>
       <field name="model">school.student</field>
       <field name="arch" type="xml">
+
+
         <form string="Form View">
           <header>
             <button name="rainbow_effect" string="Save" type="object" class="btn-primary" />
@@ -23,7 +19,7 @@
             <field name="status" options="{'clickable':'1'}" widget="statusbar" nolabel="1" />
           </header>
           <h1 class='text-center'>
-          School Management System
+            School Management System
             <h6>*******************************************************</h6>
             <h5>Registration Form</h5>
           </h1>
@@ -66,6 +62,18 @@
                   </group>
                 </group>
               </page>
+              <page string="School Uniform">
+                <field name="sale_order_line_ids" widget="one2many_list">
+                  <tree editable="bottom">
+                    <field name="company_id" invisible="1"/>
+                    <field name="product_id" domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', company_id)]" />
+                    <field name="name" />
+                    <field name="product_uom_qty" />
+                    <field name="price_unit" />
+                    <field name="price_total" />
+                  </tree>
+                </field>
+              </page>
               <page string="Parents Detail" id="parent">
                 <group>
                   <group>
@@ -106,7 +114,6 @@
                   </notebook>
                 </group>
               </page>
-
               <page string="Address">
                 <group>
                   <span class="o_form_label o_td_label" name="address_name">
@@ -181,17 +188,20 @@
       </field>
     </record>
 
-    <record id="view_school_student_pivot" model="ir.ui.view">
-      <field name="name">school.student.pivot</field>
+    <record model="ir.ui.view" id="school_student_pivot_view">
+      <field name="name">School Student Pivot View</field>
       <field name="model">school.student</field>
       <field name="arch" type="xml">
-          <pivot string="Student Enrollment and Fee Status" disable_linking="1">
-              <field name="enroll" type="row"/>
-              <field name="fee_status" type="col"/>
-              
-          </pivot>
+        <pivot>
+          <field name="std_div" type="row"/>
+          <field name="grade_level" type="col"/>
+          <field name="stream" type="col"/>
+          <field name="age" type="measure" string="Total Age"/>
+          <field name="transport" type="measure" string="Total Students Using Transport"/>
+        </pivot>
       </field>
-  </record>
+    </record>
+
     <!-- Tree View -->
     <record id="student_view_tree" model="ir.ui.view">
       <field name="name">School module tree</field>
@@ -220,11 +230,15 @@
       <field name="model">school.student</field>
       <field name="arch" type="xml">
         <search>
+          <filter name="filter_this_week" string="This Week" domain="[('dob', '>=', (context_today() - (7 * 86400))), ('dob', '&lt;=', (context_today() + ((6 - context_today().weekday()) * 86400)))]"/>
+          <filter name="filter_this_month" string="This Month" domain="[('dob', '>=', (context_today() - ((context_today().day - 1) * 86400))), ('dob', '&lt;=', (context_today() + ((31 - context_today().day) * 86400)))]"/>
           <field name="birth_month" string="Month" />
           <field name="name" filter_domain="['|',('name','ilike',self),('enroll','ilike',self)]"/>
           <field name="grade_level" />
           <group expand="0" string="Group By">
-            <filter string="Birth Month" name="birth_month" context="{'group_by': 'birth_month'}" />
+            <filter string="Day" name="day" context="{'group_by': 'dob:date'}"/>
+            <filter string="Month" name="month" context="{'group_by': 'dob:month'}"/>
+            <filter string="Year" name="year" context="{'group_by': 'dob:year'}"/>
           </group>
           <field name="grade_level" string="Standard &amp; Division" />
           <filter name="filter_10" string="10th Standard" domain="[('grade_level', '=', '10')]" />
@@ -238,8 +252,14 @@
       <field name="prefix">ENR-000</field>
     </record>
 
+    <record model="ir.actions.act_window" id="action_submit">
+      <field name="name">Submit Action</field>
+      <field name="res_model">school.student</field>
+      <field name="view_mode">tree,form,kanban,graph,pivot</field>
+      <field name="context">{'search_default_filter_10': 1}</field>
+    </record>
     <!-- Action -->
-    
+
 
     <record id="action_school_student_science" model="ir.actions.act_window">
       <field name="name">Science Students</field>
