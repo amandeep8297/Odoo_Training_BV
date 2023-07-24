@@ -7,7 +7,7 @@ class CancelAdmissionWizard(models.TransientModel):
     student_id=fields.Many2one('school.student',required=False)
     reason=fields.Text()
     date_cancel=fields.Date(string="Cancellation Date")
-
+    
     @api.model
     def default_get(self,fields):
         res=super(CancelAdmissionWizard,self).default_get(fields)

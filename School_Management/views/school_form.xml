@@ -17,14 +17,14 @@
             <button id="button_cancel_admission" name="%(action_cancel_admission)d" string="Delete Admission" class="btn btn-default" type="action" />
             <button special="cancel" string="Cancel" class="btn btn-default"/>
             <field name="status" options="{'clickable':'1'}" widget="statusbar" nolabel="1" />
+              <button class="oe_stat_button" type='object' name='toggle_active' icon='fa-archive' style='background-color:LightGray;color:mediumpurple'>
+                <field name='active' widget='boolean_button' options="{'terminology':'archived'}" />
+              </button>
           </header>
           <h1 class='text-center'>
             School Management System
-            <h6>*******************************************************</h6>
-            <h5>Registration Form</h5>
           </h1>
           <sheet>
-
             <group>
               <div class="oe_title">
                 <div>
@@ -36,7 +36,6 @@
                 <h1 class="mb32">
                   <field name="name" placeholder="Full Name" class="mb16" />
                 </h1>
-
               </div>
               <group>
                 <field name="image" widget="image" style="height:100px;width:100px;" />
@@ -48,23 +47,30 @@
                   <group>
                     <field name="std_div" />
                     <field name="roll_number" />
-                    <field name="grade_level" />
+                    <field name="grade_level" widget="float_toggle" options="{'range':[1,2,3,4,5,6,7,8,9,10,11,12]}" style="width:100px;"/>
                     <field name="dob" />
                     <field name="age" />
-                    <field name="active" invisible='1'/>
                   </group>
                   <group>
                     <field name="stream" attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
                     <field name="class_teacher" widget="Many2one_link" />
                     <field name="phone_code" />
                     <field name="phone" widget="phone" />
+                    <field name="remarks" widget="priority"/>
                     <field name="transport" widget="many2one_avatar" />
+
                   </group>
                 </group>
               </page>
               <page string="School Uniform">
                 <field name="sale_order_line_ids" widget="one2many_list">
-                  <tree editable="bottom">
+                  <tree editable="bottom" widget="section_and_note_one2many">
+                    <control>
+                      <create string="Add a Line"/>
+                      <create string="Add a section" context="{'default_display_type':'line_section'}"/>
+                      <create string="Add a note" context="{'default_display_type':'line_note'}"/>
+
+                    </control>
                     <field name="company_id" invisible="1"/>
                     <field name="product_id" domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', company_id)]" />
                     <field name="name" />
@@ -147,7 +153,7 @@
       <field name="model">school.student</field>
       <field name="arch" type="xml">
         <kanban string="Student Kanban" class="o_res_partner_kanban">
-
+          <field name="drag" widget="handle"/>
           <field name="id"/>
           <templates>
             <t t-name="kanban-box">
@@ -208,6 +214,7 @@
       <field name="model">school.student</field>
       <field name="arch" type="xml">
         <tree string="Channel" decoration-warning="status == 'applied'" decoration-danger="status == 'rejected'" decoration-info="status == 'cleared_entrance_test'" decoration-primary="status == 'joined_school'" decoration-success="status == 'selected'">
+          <field name="drag" widget="handle"/>
           <field name="enroll" optional="show" />
           <field name="std_div" optional="show" />
           <field name="formatted_address" optional="show" />
