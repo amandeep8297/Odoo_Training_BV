@@ -1,10 +1,14 @@
 {
     'name': 'School Management System',
     'version': '16.0',
+    'summary': 'A comprehensive school management system for Odoo.',
     'author': 'Aman Deep',
     'depends': ['base','mail','sale_management','product'],
     'license':'LGPL-3',
     'auto_install': True,
+    'website':'https://github.com/amandeep8297',
+    'sequence':'0',
+    'category':'Education',
     'installable': True,
     'application': True,
     'data':[
@@ -16,5 +20,5 @@
         'views/school_menu.xml',
     ],
     'images': ['static/description/icon.png'],
-    'demo': ['data/demo.xml']
+    'demo': ['data/demo.xml'],
 }
