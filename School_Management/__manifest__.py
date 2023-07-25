@@ -3,6 +3,7 @@
     'version': '16.0',
     'author': 'Aman Deep',
     'depends': ['base','mail','sale_management','product'],
+    'license':'LGPL-3',
     'auto_install': True,
     'installable': True,
     'application': True,

@@ -254,7 +254,7 @@ class SchoolStudent(models.Model):
                         "Phone number is already assigned to another student!"
                     )
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         vals["enroll"] = self.env["ir.sequence"].next_by_code("school.student")
         return super(SchoolStudent, self).create(vals)
