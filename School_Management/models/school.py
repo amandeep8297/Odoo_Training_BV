@@ -210,7 +210,9 @@ class SchoolStudent(models.Model):
     def action_done(self):
         for rec in self:
             rec.status = "selected"
-
+    _sql_constraints = [
+        ('unique_phone_parent', 'unique (phone_parent)', 'The phone number of parent should be unique !')
+    ]
     @api.depends("dob")
     def _compute_age(self):
         today = date.today()
@@ -256,8 +258,10 @@ class SchoolStudent(models.Model):
 
     @api.model_create_multi
     def create(self, vals):
-        vals["enroll"] = self.env["ir.sequence"].next_by_code("school.student")
-        return super(SchoolStudent, self).create(vals)
+        for val in vals:
+            val["enroll"] = self.env["ir.sequence"].next_by_code("school.student")
+            record= super(SchoolStudent, self).create(val)
+            return record
 
     @api.constrains("phone", "phone_parent")
     def _check_phone_number(self):
