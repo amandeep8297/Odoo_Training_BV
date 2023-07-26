@@ -278,15 +278,4 @@ class SchoolStudent(models.Model):
             if rec.dob and rec.dob > today:
                 raise ValidationError(_("Invalid Date of Birth."))
 
-    # Using One2many Relation
-    sale_order_line_ids = fields.One2many(
-        "sale.order.line", "student_id", string="Sale Order Lines"
-    )
 
-
-class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
-
-    student_id = fields.Many2one(
-        "school.student", string="Student", ondelete="restrict"
-    )

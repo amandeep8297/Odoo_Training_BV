@@ -62,24 +62,6 @@
                   </group>
                 </group>
               </page>
-              <page string="School Uniform">
-                <field name="sale_order_line_ids" widget="one2many_list">
-                  <tree editable="bottom" widget="section_and_note_one2many">
-                    <control>
-                      <create string="Add a Line"/>
-                      <create string="Add a section" context="{'default_display_type':'line_section'}"/>
-                      <create string="Add a note" context="{'default_display_type':'line_note'}"/>
-
-                    </control>
-                    <field name="company_id" invisible="1"/>
-                    <field name="product_id" domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', company_id)]" />
-                    <field name="name" />
-                    <field name="product_uom_qty" />
-                    <field name="price_unit" />
-                    <field name="price_total" />
-                  </tree>
-                </field>
-              </page>
               <page string="Parents Detail" id="parent">
                 <group>
                   <group>
