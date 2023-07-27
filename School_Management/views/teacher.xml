@@ -1,148 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-<data noupdate='0'>  
-  <!-- Form View -->
-  <record model="ir.ui.view" id="view_form_teacher_id">
-    <field name="name">Teacher Module Form</field>
-    <field name="model">school.teacher</field>
-    <field name="arch" type="xml">
-      <form string="Form View">
-        <header>
+  <data noupdate='0'>
+    <!-- Form View -->
+    <record model="ir.ui.view" id="view_form_teacher_id">
+      <field name="name">Teacher Module Form</field>
+      <field name="model">school.teacher</field>
+      <field name="arch" type="xml">
+        <form string="Form View">
+          <header>
             <button name="rainbow_effect" string="Save" type="object" class="btn-success" />
-           
+
             <button id="button_cancel_admission" name="%(action_cancel_admission)d" string="Delete Teacher" class="btn btn-default" type="action" />
             <button special="cancel" string="Cancel" class="btn btn-default"/>
             <field name="stream" options="{'clickable':'1'}" widget="statusbar" nolabel="1" />
           </header>
-        <h1 class='text-center'>
+          <h1 class='text-center'>
           School Management System
-        </h1>
-        <h5 class='text-center'>
+          </h1>
+          <h5 class='text-center'>
           Class Teacher's registration
-        </h5>
-        <sheet>
-         
-          <div class="oe_title">
-            <div>
-              <h1>
-                <field name="teacher_id" readonly="1" />
-              </h1>
-              <label for="name" />
-            </div>
-            <h1 class="mb32">
-              <field name="name" placeholder="Full Name" class="mb16" />
-            </h1>
-            <field name="active" invisible="1" />
-          </div>
-          <notebook>
-            <page string="Teacher Detail">
-              <group>
-                <group>
-                  <field name="teacher_id" />
-                  <field name="std_div" />
-                  <field name="stream" attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
-                </group>
-                <group>
-                  <field name="teacher_image" widget="image" class="oe_avatar" />
-                  <field name="grade_level" />
-                  <field name="phone" widget="phone" />
-                </group>
-              </group>
-            </page>
-            <page string="Address">
-              <group>
-                <span class="o_form_label o_td_label" name="address_name">
-                  <b>Address</b>
-                </span>
-                <div class="o_address_format">
-                  <field name="street" placeholder="Street" class="o_address_street" />
-                  <field name="city" placeholder="City" class="o_address_city" />
-                  <field name="state_id" class="o_address_state" placeholder="State" />
-                  <field name="zip" placeholder="ZIP" class="o_address_zip" />
-                  <div name="partner_address_country" class="d-flex justify-content-between">
-                    <field name="country_id" placeholder="Country" class="o_address_country" />
+          </h5>
+          <sheet>
 
-                  </div>
-                </div>
-              </group>
-            </page>
-          </notebook>
-        </sheet>
-        <div class="oe_chatter">
-          <field name="message_follower_ids" />
-          <field name="message_ids" options="{'post refresh': 'recipients'}" />
-        </div>
-      </form>
-    </field>
-  </record>
-
-  <!-- Kanban View -->
-  <record id="teacher_view_kanban" model="ir.ui.view">
-    <field name="name">School Teacher module Kanban</field>
-    <field name="model">school.teacher</field>
-    <field name="arch" type="xml">
-      <kanban string="Teacher Kanban" class="o_res_partner_kanban">
-        
-        <field name="id"/>
-        <templates>
-          <t t-name="kanban-box">
-            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
-              <div class="o_kanban_image d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('school.teacher','teacher_image',record.id.raw_value,placeholder)}')"> 
+            <div class="oe_title">
+              <div>
+                <h1>
+                  <field name="teacher_id" readonly="1" />
+                </h1>
+                <label for="name" />
               </div>
-              <div class="oe_kanban_details d-flex-column">
-              <ul style="list-style-type:none;">
-                <li>
-                  <b>Name : </b>
-                  <field name="name"/>
-                </li>
-                <li>
-                  <b>Standard-Division : </b>
-                  <field name="std_div"/>
-                </li>
-                <li>
-                  <b>Status : </b>
-                  <field name="active"/>
-                </li>
-              </ul>
+              <h1 class="mb32">
+                <field name="name" placeholder="Full Name" class="mb16" />
+              </h1>
+              <field name="active" invisible="1" />
             </div>
+            <notebook>
+              <page string="Teacher Detail">
+                <group>
+                  <group>
+                    <field name="teacher_id" />
+                    <field name="std_div" />
+                    <field name="stream" attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
+                  </group>
+                  <group>
+                    <field name="teacher_image" widget="image" class="oe_avatar" />
+                    <field name="grade_level" />
+                    <field name="phone" widget="phone" />
+                  </group>
+                </group>
+              </page>
+              <page string="Students under my Tutorship">
+                <field name="tg_of" widget="one2many_list">
+                  <tree  editable='bottom'>
+                    <field name="name" string='student name'/>
+                    <field name="phone" string='Contact no.'/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Address">
+                <group>
+                  <span class="o_form_label o_td_label" name="address_name">
+                    <b>Address</b>
+                  </span>
+                  <div class="o_address_format">
+                    <field name="street" placeholder="Street" class="o_address_street" />
+                    <field name="city" placeholder="City" class="o_address_city" />
+                    <field name="state_id" class="o_address_state" placeholder="State" />
+                    <field name="zip" placeholder="ZIP" class="o_address_zip" />
+                    <div name="partner_address_country" class="d-flex justify-content-between">
+                      <field name="country_id" placeholder="Country" class="o_address_country" />
+
+                    </div>
+                  </div>
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" />
+            <field name="message_ids" options="{'post refresh': 'recipients'}" />
           </div>
-          </t>
-        </templates>
-      </kanban>
-    </field>
-  </record>
+        </form>
+      </field>
+    </record>
 
-  <record id="action_school_teacher" model="ir.actions.act_window">
-    <field name="name">Class Teacher</field>
-    <field name="res_model">school.teacher</field>
-    <field name="view_mode">tree,form,kanban</field>
-  </record>
+    <!-- Kanban View -->
+    <record id="teacher_view_kanban" model="ir.ui.view">
+      <field name="name">School Teacher module Kanban</field>
+      <field name="model">school.teacher</field>
+      <field name="arch" type="xml">
+        <kanban string="Teacher Kanban" class="o_res_partner_kanban">
 
-  <!-- Tree View -->
-  <record id="teacher_view_tree" model="ir.ui.view">
-    <field name="name">Teacher module tree</field>
-    <field name="model">school.teacher</field>
-    <field name="arch" type="xml">
-      <tree string="Channel">
-        <field name="name" />
-        <field name="std_div" />
-        <field name="grade_level" />
-        <field name="stream" />
-      </tree>
-    </field>
-  </record>
-  <record id="view_school_teacher_search" model="ir.ui.view">
-    <field name="name">school.teacher.search</field>
-    <field name="model">school.teacher</field>
-    <field name="arch" type="xml">
-      <search>
-        <field name="name" />
-        <field name="std_div" />
-        <filter name="filter_10th_record" string="Nursery to 10th" domain="[('grade_level', '&lt;', '11')]"/>
-        <filter name="filter_11th_12th_record" string="11th - 12th" domain="[('grade_level', '&gt;', '10')]"/>
-      </search>
-    </field>
-  </record>
-</data>
+          <field name="id"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                <div class="o_kanban_image d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('school.teacher','teacher_image',record.id.raw_value,placeholder)}')">
+                </div>
+                <div class="oe_kanban_details d-flex-column">
+                  <ul style="list-style-type:none;">
+                    <li>
+                      <b>Name : </b>
+                      <field name="name"/>
+                    </li>
+                    <li>
+                      <b>Standard-Division : </b>
+                      <field name="std_div"/>
+                    </li>
+                    <li>
+                      <b>Status : </b>
+                      <field name="active"/>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <record id="action_school_teacher" model="ir.actions.act_window">
+      <field name="name">Class Teacher</field>
+      <field name="res_model">school.teacher</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="teacher_view_tree" model="ir.ui.view">
+      <field name="name">Teacher module tree</field>
+      <field name="model">school.teacher</field>
+      <field name="arch" type="xml">
+        <tree string="Channel">
+          <field name="name" />
+          <field name="std_div" />
+          <field name="grade_level" />
+          <field name="stream" />
+        </tree>
+      </field>
+    </record>
+    <record id="view_school_teacher_search" model="ir.ui.view">
+      <field name="name">school.teacher.search</field>
+      <field name="model">school.teacher</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" />
+          <field name="std_div" />
+          <filter name="filter_10th_record" string="Nursery to 10th" domain="[('grade_level', '&lt;', '11')]"/>
+          <filter name="filter_11th_12th_record" string="11th - 12th" domain="[('grade_level', '&gt;', '10')]"/>
+        </search>
+      </field>
+    </record>
+  </data>
 </odoo>

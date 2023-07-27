@@ -80,6 +80,7 @@ class SchoolStudent(models.Model):
         ],
         string="Remark of Student",
     )
+    tg=fields.Many2one('school.teacher',string="Tutor Guardian")
     fee_status = fields.Selection(
         [("paid", "Paid"), ("half_paid", "Half Paid"), ("pending", "Pending")],
         string="Fee Status",

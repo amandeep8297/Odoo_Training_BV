@@ -34,7 +34,7 @@
                   <label for="name" />
                 </div>
                 <h1 class="mb32">
-                  <field name="name" placeholder="Full Name" class="mb16" />
+                  <field name="name" placeholder="Full Name" widget='char_emojis' class="mb16" />
                 </h1>
               </div>
               <group>
@@ -58,6 +58,7 @@
                     <field name="phone" widget="phone" />
                     <field name="remarks" widget="priority"/>
                     <field name="transport" widget="many2one_avatar" />
+                    <field name="tg"/>
 
                   </group>
                 </group>

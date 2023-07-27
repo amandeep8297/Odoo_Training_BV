@@ -29,6 +29,7 @@ class SchoolTeacher(models.Model):
     country_code=fields.Char(related="country_id.code")
     zip = fields.Char(string='ZIP')
     phone_code = fields.Char(readonly=True)
+    tg_of=fields.One2many('school.student','tg')
     def rainbow_effect(self):
         return{
             'effect':{
