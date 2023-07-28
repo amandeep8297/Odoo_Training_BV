@@ -25,6 +25,7 @@
             School Management System
           </h1>
           <sheet>
+            AMAN DEEP SINGH
             <group>
               <div class="oe_title">
                 <div>
@@ -53,7 +54,7 @@
                     <field name="game" context="{'active_id' : context.get('active_id')}"/>
                   </group>
                   <group>
-                    <field name="stream" attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />
+                    <field name="stream" attrs="{'invisible': [('std_div', 'not in', ['11', '12'])]}" />
                     <field name="class_teacher" widget="Many2one_link" />
                     <field name="phone_code" />
                     <field name="phone" widget="phone" />
@@ -121,7 +122,6 @@
                 </group>
               </page>
             </notebook>
-            <button name="action_url" string="URL action" type="object" confirm="Want to explore URL Action window feature of Odoo ?" class="oe_highlight" />
           </sheet>
           <div class="oe_chatter">
             <field name="message_follower_ids" />

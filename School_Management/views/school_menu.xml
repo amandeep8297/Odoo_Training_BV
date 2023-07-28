@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <menuitem id="menu_range" name="School" sequence="0" />
-    <menuitem id="menu_data" name="Streams" parent="School_Management.menu_range" action="School_Management.action_submit" sequence="10" />
-    <menuitem id="school_teacher_list" name="Class Teacher's List" parent="School_Management.menu_range" action="School_Management.action_school_teacher" sequence="10" />
+    <menuitem id="menu_data" name="Subject Streams" parent="School_Management.menu_range" action="School_Management.action_submit" sequence="10" />
+    <menuitem id="school_teacher_list" name="Class Teacher Table" parent="School_Management.menu_range" action="School_Management.action_school_teacher" sequence="10" />
     <menuitem id="menu_school_student_science" name="Science" parent="School_Management.menu_data" action="School_Management.action_school_student_science" sequence="20" />
     <menuitem id="menu_school_student_commerce" name="Commerce " parent="School_Management.menu_data" action="School_Management.action_school_student_commerce" sequence="30" />
     <menuitem id="menu_school_student_arts" name="Arts " parent="School_Management.menu_data" action="School_Management.action_school_student_arts" sequence="40" />
-    <menuitem id="sports_data" name="Student Sports Data" parent="menu_range" action="sports_submit" sequence='10'/>
+    <menuitem id="sports_data" name="Student Game Table" parent="menu_range" action="sports_submit" sequence='10'/>
 </odoo>

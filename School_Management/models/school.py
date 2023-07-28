@@ -126,7 +126,13 @@ class SchoolStudent(models.Model):
             "url": "https://www.odoo.com/documentation/16.0/",
         }
 
-   
+    @api.ondelete(at_uninstall=False)
+    def _check_fee_status(self):
+        for rec in self:
+            if rec.fee_status == "half_paid" or rec.fee_status == "pending":
+                raise ValidationError(
+                    _("You cannot delete student with fee status half paid or pending!")
+                )
 
     def copy(self, default=None):
         if default is None:
