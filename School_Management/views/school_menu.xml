@@ -6,4 +6,5 @@
     <menuitem id="menu_school_student_science" name="Science" parent="School_Management.menu_data" action="School_Management.action_school_student_science" sequence="20" />
     <menuitem id="menu_school_student_commerce" name="Commerce " parent="School_Management.menu_data" action="School_Management.action_school_student_commerce" sequence="30" />
     <menuitem id="menu_school_student_arts" name="Arts " parent="School_Management.menu_data" action="School_Management.action_school_student_arts" sequence="40" />
+    <menuitem id="sports_data" name="Student Sports Data" parent="menu_range" action="sports_submit" sequence='10'/>
 </odoo>

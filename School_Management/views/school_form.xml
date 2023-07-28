@@ -50,6 +50,7 @@
                     <field name="grade_level" widget="float_toggle" options="{'range':[1,2,3,4,5,6,7,8,9,10,11,12]}" style="width:100px;"/>
                     <field name="dob" />
                     <field name="age" />
+                    <field name="game" context="{'active_id' : context.get('active_id')}"/>
                   </group>
                   <group>
                     <field name="stream" attrs="{'invisible': [('std_div', 'not in', ['11th A','11th B', '12th A','12th B'])]}" />

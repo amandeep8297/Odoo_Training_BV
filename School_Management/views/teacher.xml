@@ -132,11 +132,11 @@
       <field name="name">Teacher module tree</field>
       <field name="model">school.teacher</field>
       <field name="arch" type="xml">
-        <tree string="Channel">
+        <tree string="Channel" decoration-danger="stream == 'science'" decoration-info="stream == 'commerce'" decoration-success="stream == 'arts'">
           <field name="name" />
           <field name="std_div" />
           <field name="grade_level" />
-          <field name="stream" />
+          <field name="stream" widget='badge' decoration-danger="stream == 'science'" decoration-info="stream == 'commerce'" decoration-success="stream == 'arts'" />
         </tree>
       </field>
     </record>
