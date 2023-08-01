@@ -29,7 +29,7 @@
             <page string="Students">
               <field name="name">
                 <kanban string="Student Kanban" class="o_res_partner_kanban">
-                  <field name="drag" widget="handle" />
+                  <field name="drag" widget="handle"/>
                   <field name="id" />
                   <templates>
                     <t t-name="kanban-box">

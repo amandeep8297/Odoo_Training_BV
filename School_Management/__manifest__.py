@@ -19,6 +19,7 @@
         'views/sale_order_view.xml',
         'views/sports.xml',
         'views/school_menu.xml',
+        'reports/student_report.xml',
     ],
     'images': ['static/description/icon.png'],
     'demo': ['data/demo.xml'],

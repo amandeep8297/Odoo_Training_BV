@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <template id='school_student_qweb_report_template'>
+            <t t-call='web.html_container'>
+                <t t-foreach='docs' t-as='record'>
+                    <t t-call='web.external_layout'>
+                        <div class="page">
+                            <div style="text-align: center; margin-bottom: 20px;">
+                                <h2>Student Identity Card</h2>
+                            </div>
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                    <td style="width: 30%; padding: 2px; vertical-align: top;">
+                                        <t t-if="record.image">
+                                            <img t-att-src="'data:image/png;base64,' + record.image.decode('utf-8')" style="max-width: 200px; max-height: 200px;" />
+                                        </t>
+                                        <t t-else="">
+                                            <div>No Image Available</div>
+                                        </t>
+                                    </td>
+                                    <td style="width: 70%; padding-top: 10px;
+                                    padding-bottom: 20px;
+                                    padding-left: 30px;
+                                    padding-right: 40px;">
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td><strong>Name:</strong></td>
+                                                <td><span t-field="record.name"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Enroll:</strong></td>
+                                                <td><span t-field="record.enroll"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Age:</strong></td>
+                                                <td><span t-field="record.age"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Status:</strong></td>
+                                                <td><span t-field="record.status"/></td>
+                                            </tr>
+                                            <!-- Add other fields here if needed -->
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+        
+        <!-- <t t-if="o.image">
+            <img t-att-src="'data:image/png;base64,'+o.image.decode('utf-8')" style="max-width: 200px; max-height: 200px;" />
+        </t> -->
+    <record id="student_report" model="ir.actions.report">
+        <field name="name">Print Student Report</field>
+        <field name="model">school.student</field>
+        <field name="binding_model_id" ref="model_school_student"></field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">School_Management.school_student_qweb_report_template</field>
+        <field name="report_file">School_Management.school_student_qweb_report_template</field>
+        <field name="binding_type">report</field>
+    </record>
+    </data>
+</odoo>
