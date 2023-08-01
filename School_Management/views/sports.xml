@@ -1,122 +1,143 @@
 <odoo>
+  <!-- Form View -->
+  <record model="ir.ui.view" id="view_form_example">
+    <field name="name">Sports Module Form</field>
+    <field name="model">sports.player</field>
+    <field name="arch" type="xml">
+      <form string="Form View">
+        <h1 class='text-center'>
+          Sports Data
+        </h1>
+        <sheet>
+          <group>
+            <group>
+              <field name="sports_img" widget="image" style="height:100px;width:100px;" />
+            </group>
+            <group>
+              <field name="game" />
+              <field name="height" />
+              <field name="weight" />
+            </group>
+            <group>
+              <field name="gender" />
+              <field name="bloodgrp" />
+              <field name="sports_teacher" widget="many2one_avatar" />
+            </group>
+          </group>
+          <notebook>
 
-    <!-- Form View -->
-    <record model="ir.ui.view" id="view_form_example">
-      <field name="name">Sports Module Form</field>
-      <field name="model">sports.player</field>
-      <field name="arch" type="xml">
-        <form string="Form View">
-          <h1 class='text-center'>
-              Sports Data
-          </h1>
-          <sheet>
-            <div class="oe_title">
-                <div>
-                  <label for="name" />
-                </div>
-                <h6 class="mb32">
-                  <field name="name" placeholder="Full Name" class="mb16" widget="many2many_tags"/>
-                </h6>
-              </div>
-            <notebook>
-                <page>
-              <group>
-                <group>
-                  <field name="game" />
-                  <field name="height" />
-                  <field name="weight" />
-                  </group>
-                  <group>
-                  <field name="gender" />
-                  <field name="bloodgrp" />
-                  <field name="sports_teacher" widget="many2one_avatar" />
-                  </group>
-                </group>
+            <page string="Students">
+              <field name="name">
+                <kanban string="Student Kanban" class="o_res_partner_kanban">
+                  <field name="drag" widget="handle" />
+                  <field name="id" />
+                  <templates>
+                    <t t-name="kanban-box">
+                      <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                        <div class="o_kanban_image d-none d-md-block"
+                          t-attf-style="background-image:url('#{kanban_image('school.student','image',record.id.raw_value,placeholder)}')">
+                        </div>
+                        <div class="oe_kanban_details d-flex-column">
+                          <ul style="list-style-type:none;">
+                            <li>
+                              <b>Name : </b>
+                              <field name="name" />
+                            </li>
+                            <li>
+                              <b>Enrollment : </b>
+                              <field name="enroll" />
+                            </li>
+                            <li>
+                              <b>Standard-Division : </b>
+                              <field name="std_div" />
+                            </li>
+                            <li>
+                              <b>Status : </b>
+                              <field name="status" />
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </t>
+                  </templates>
+                </kanban>
+              </field>
             </page>
-            </notebook>
-  
-          </sheet>
-          <div class="oe_chatter">
-            <field name="message_follower_ids" />
-            <field name="message_ids" />
-          </div>
-        </form>
-      </field>
-    </record>
-  
-  
-      <!-- Tree View -->
-    <record id="player_view_tree" model="ir.ui.view">
-      <field name="name">Sports module tree</field>
-      <field name="model">sports.player</field>
-      <field name="arch" type="xml">
-        <tree string="Channel" decoration-danger="gender == 'female'" decoration-info="gender == 'other'" decoration-success="gender == 'male'">
-            <field name="game" widget="badge"/>
-            <field name="height" />
-            <field name="weight" />
-            <field name="gender" widget="badge" decoration-danger="gender == 'female'" decoration-info="gender == 'other'" decoration-success="gender == 'male'"/>
-            <field name="bloodgrp" widget="badge"/>
-        </tree>
-      </field>
-    </record>
-  
-  
-    <!-- Graph View -->
-    <record id="model_graph_view" model="ir.ui.view">
-      <field name="name">Model Graph View</field>
-      <field name="model">sports.player</field>
-      <field name="arch" type="xml">
-        <graph string="Graph View" type="bar">
-            <field name="game" />
-            <field name="height" />
-            <field name="weight" />
-            <field name="gender" />
-            <field name="bloodgrp" />
-        </graph>
-      </field>
-    </record>
-  
-    <!-- Kanban View -->
-    <record id="model_kanban_view" model="ir.ui.view">
-      <field name="name">Model Kanban View</field>
-      <field name="model">sports.player</field>
-      <field name="arch" type="xml">
-        <kanban string="Kanban View">
-            <field name="game" />
-            <field name="height" />
-            <field name="weight" />
-            <field name="gender" />
-            <field name="bloodgrp" />
-          <templates>
-            <t t-name="kanban-box">
-              <div class="oe_kanban_content">
-                <div>
-                    <field name="game" />  
-                </div>
-                <div>
-                    <field name="height" />
-                </div>
-                <div>
-                    <field name="weight" />
-                </div>
-                <div>
-                  <field name="gender" />
-                </div>
-                <div>
-                  <field name="bloodgrp" />
-                </div>
+          </notebook>
+        </sheet>
+        <div class="oe_chatter">
+          <field name="message_follower_ids" />
+          <field name="message_ids" />
+        </div>
+      </form>
+    </field>
+  </record>
+  <!-- Tree View -->
+  <record id="player_view_tree" model="ir.ui.view">
+    <field name="name">Sports module tree</field>
+    <field name="model">sports.player</field>
+    <field name="arch" type="xml">
+      <tree string="Channel" decoration-danger="gender == 'female'"
+        decoration-info="gender == 'other'" decoration-success="gender == 'male'">
+        <field name="game" widget="badge" />
+        <field name="height" />
+        <field name="weight" />
+        <field name="gender" widget="badge" decoration-danger="gender == 'female'"
+          decoration-info="gender == 'other'" decoration-success="gender == 'male'" />
+        <field name="bloodgrp" widget="badge" />
+      </tree>
+    </field>
+  </record>
+  <!-- Graph View -->
+  <record id="model_graph_view" model="ir.ui.view">
+    <field name="name">Model Graph View</field>
+    <field name="model">sports.player</field>
+    <field name="arch" type="xml">
+      <graph string="Graph View" type="bar">
+        <field name="game" />
+        <field name="height" />
+        <field name="weight" />
+        <field name="gender" />
+        <field name="bloodgrp" />
+      </graph>
+    </field>
+  </record>
+  <!-- Kanban View -->
+  <record id="sports_view_kanban" model="ir.ui.view">
+    <field name="name">Sports module Kanban</field>
+    <field name="model">sports.player</field>
+    <field name="arch" type="xml">
+      <kanban string="Sports Kanban" class="o_res_partner_kanban">
+        <field name="id" />
+        <templates>
+          <t t-name="kanban-box">
+            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+              <div class="o_kanban_image d-none d-md-block"
+              t-attf-style="background-image:url('/web/image/sports.player/#{record.id.value}/sports_img/placeholder')">
+              </div>
+              <div class="oe_kanban_details d-flex-column">
+                <ul style="list-style-type:none;">
+                  <li>
+                    <b>Game : </b>
+                    <field name="game" />
+                  </li>
+                  <li>
+                    <b>Blood Group : </b>
+                    <field name="bloodgrp" />
+                  </li>
+                </ul>
+              </div>
             </div>
-            </t>
-          </templates>
-        </kanban>
-      </field>
-    </record>
-     
-    <!-- Action -->
-    <record model="ir.actions.act_window" id="sports_submit">
-      <field name="name">Submit Action</field>
-      <field name="res_model">sports.player</field>
-      <field name="view_mode">tree,form,graph,kanban</field>
-    </record>
-    
-  </odoo>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+  <!-- Action -->
+  <record model="ir.actions.act_window" id="sports_submit">
+    <field name="name">Submit Action</field>
+    <field name="res_model">sports.player</field>
+    <field name="view_mode">kanban,form,tree,graph</field>
+  </record>
+</odoo>

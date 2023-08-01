@@ -51,7 +51,7 @@
                     <field name="grade_level" widget="float_toggle" options="{'range':[1,2,3,4,5,6,7,8,9,10,11,12]}" style="width:100px;"/>
                     <field name="dob" />
                     <field name="age" />
-                    <field name="game" context="{'active_id' : context.get('active_id')}"/>
+                    <field name="game" context="{'active_id' : context.get('active_id')}" widget='many2many_tags'/>
                   </group>
                   <group>
                     <field name="stream" attrs="{'invisible': [('std_div', 'not in', ['11', '12'])]}" />
@@ -146,9 +146,14 @@
                 </div>
                 <div class="oe_kanban_details d-flex-column">
                   <ul style="list-style-type:none;">
+                    
                     <li>
                       <b>Name : </b>
                       <field name="name"/>
+                    </li>
+                    <li>
+                      <b>Enrollment : </b>
+                      <field name="enroll"/>
                     </li>
                     <li>
                       <b>Standard-Division : </b>
@@ -232,7 +237,7 @@
             <filter string="Year" name="year" context="{'group_by': 'dob:year'}"/>
           </group>
           <field name="grade_level" string="Standard &amp; Division" />
-          <filter name="filter_10" string="10th Standard" domain="[('grade_level', '=', '10')]" />
+          <filter name="filter_12" string="12th Standard" domain="[('grade_level', '=', '12')]" />
         </search>
       </field>
     </record>
@@ -246,7 +251,7 @@
     <record model="ir.actions.act_window" id="action_submit">
       <field name="name">Submit Action</field>
       <field name="res_model">school.student</field>
-      <field name="view_mode">tree,form,kanban,graph,pivot</field>
+      <field name="view_mode">kanban,form,graph,tree,pivot</field>
       <field name="context">{'search_default_filter_10': 1}</field>
     </record>
     <!-- Action -->
@@ -255,7 +260,7 @@
     <record id="action_school_student_science" model="ir.actions.act_window">
       <field name="name">Science Students</field>
       <field name="res_model">school.student</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">kanban,form</field>
       <field name="context">{'default_stream' : 'science'}</field>
       <field name="domain">[('stream', '=', 'science')]</field>
     </record>
@@ -263,14 +268,14 @@
     <record id="action_school_student_commerce" model="ir.actions.act_window">
       <field name="name">Commerce Students</field>
       <field name="res_model">school.student</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">kanban,form</field>
       <field name="context">{'default_stream' : 'commerce'}</field>
       <field name="domain">[('stream', '=', 'commerce')]</field>
     </record>
     <record id="action_school_student_arts" model="ir.actions.act_window">
       <field name="name">Arts Students</field>
       <field name="res_model">school.student</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">kanban,form</field>
       <field name="context">{'default_stream' : 'arts'}</field>
       <field name="domain">[('stream', '=', 'arts')]</field>
     </record>

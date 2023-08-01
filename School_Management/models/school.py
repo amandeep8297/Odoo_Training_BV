@@ -21,7 +21,7 @@ class SchoolStudent(models.Model):
     class_teacher = fields.Many2one(
         "school.teacher", compute="_compute_class_teacher", store=True
     )
-    game=fields.Many2one('sports.player',string="Favorite game ")
+    game=fields.Many2many('sports.player',string="Favorite game ")
     dob = fields.Date(tracking=True)
     age = fields.Integer(
         compute="_compute_age", inverse="_inverse_compute_age", store=True
@@ -44,6 +44,7 @@ class SchoolStudent(models.Model):
         tracking=True,
         store=True,
     )
+    
     active = fields.Boolean("Active", default=True)
     drag = fields.Integer()
     parent_name = fields.Char()
@@ -91,7 +92,7 @@ class SchoolStudent(models.Model):
         "school.teacher", "sibling", string="Name of Sibling "
     )
     transport = fields.Many2one("res.users", string="Transport Incharge")
-    image = fields.Binary(string="Display picture")
+    image = fields.Image(string="Display picture")
     street = fields.Char()
     city = fields.Char()
     state_id = fields.Many2one(

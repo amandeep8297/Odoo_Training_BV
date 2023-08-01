@@ -6,10 +6,12 @@ class SportsPlayer(models.Model):
     _description="Sports data"
     _rec_name = 'game'
     
-    name = fields.One2many('school.student','game',string="Student Name ")
+    name = fields.Many2many('school.student','game',string="Student Name ")
     height=fields.Float()
     weight=fields.Float()
     game=fields.Char(string="Game Name")
+    drag = fields.Integer()
+    sports_img = fields.Image(string="Display picture")
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
@@ -27,3 +29,7 @@ class SportsPlayer(models.Model):
         print(self._context)
         return self.create({'game':game}).name_get()[0]
     
+    # @api.onchange('images')
+    # def check_image(self):
+    #     for rec in self:
+    #         print(rec.images)
