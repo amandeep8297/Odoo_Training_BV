@@ -106,6 +106,13 @@ class SchoolStudent(models.Model):
         string="Student Address", compute="_compute_formatted_address"
     )
 
+    def action_send_mail(self):
+        template_id=self.env.ref('School_Management.student_email_template').id
+        template=self.env['mail.template'].browse(template_id)
+        template.send_mail(self.id, force_send=True)
+
+    attachment_ids = fields.Many2many('ir.attachment', 'school_student_attachment_rel', 'student_id', 'attachment_id', string="Attachments")
+    # Other fields and methods of the school.student model...       
     @api.depends("street", "city", "state_id", "zip", "country_id")
     def _compute_formatted_address(self):
         for partner in self:

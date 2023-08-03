@@ -6,62 +6,86 @@
                 <t t-foreach='docs' t-as='record'>
                     <t t-call='web.external_layout'>
                         <div class="page">
-                            <div style="text-align: center; margin-bottom: 20px;">
-                                <h2>Student Identity Card</h2>
-                            </div>
-                            <table style="width: 100%; border-collapse: collapse;">
-                                <tr>
-                                    <td style="width: 30%; padding: 2px; vertical-align: top;">
+                            <div class="student-card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                                                           max-width: 200px; 
+                                                           margin: 20px auto; 
+                                                           padding: 10px; 
+                                                           text-align: center;
+                                                           border-radius: 10px; 
+                                                           background-color: #f9f9f9;">
+                                <div class="card-header" style="color: grey;
+                                                               font-size: 18px;
+                                                               padding: 5px 0; 
+                                                               border-bottom: 1px solid #ccc;">
+                                    <h5>Student Card</h5>
+                                </div>
+                                <div class="card-body" style="padding: 10px;">
+                                    <div class="profile-image">
                                         <t t-if="record.image">
-                                            <img t-att-src="'data:image/png;base64,' + record.image.decode('utf-8')" style="max-width: 200px; max-height: 200px;" />
+                                            <img t-att-src="'data:image/png;base64,' + record.image.decode('utf-8')" style="max-width: 150px;
+                                                        max-height: 150px; 
+                                                        border-radius: 50%;" />
                                         </t>
                                         <t t-else="">
                                             <div>No Image Available</div>
                                         </t>
-                                    </td>
-                                    <td style="width: 70%; padding-top: 10px;
-                                    padding-bottom: 20px;
-                                    padding-left: 30px;
-                                    padding-right: 40px;">
-                                        <table style="width: 100%;">
+                                    </div>
+                                    <div class="profile-info" style="font-size: 16px;
+                                                                    color: #333;
+                                                                    margin-top: 10px;">
+                                        <table>
                                             <tr>
-                                                <td><strong>Name:</strong></td>
-                                                <td><span t-field="record.name"/></td>
+                                                <td>
+                                                    <strong>Name:</strong>
+                                                </td>
+                                                <td>
+                                                    <span t-field="record.name"/>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Enroll:</strong></td>
-                                                <td><span t-field="record.enroll"/></td>
+                                                <td>
+                                                    <strong>Enroll:</strong>
+                                                </td>
+                                                <td>
+                                                    <span t-field="record.enroll"/>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Age:</strong></td>
-                                                <td><span t-field="record.age"/></td>
+                                                <td>
+                                                    <strong>Age:</strong>
+                                                </td>
+                                                <td>
+                                                    <span t-field="record.age"/>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Status:</strong></td>
-                                                <td><span t-field="record.status"/></td>
+                                                <td>
+                                                    <strong>Status:</strong>
+                                                </td>
+                                                <td>
+                                                    <span t-field="record.status"/>
+                                                </td>
                                             </tr>
-                                            <!-- Add other fields here if needed -->
                                         </table>
-                                    </td>
-                                </tr>
-                            </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </t>
                 </t>
             </t>
         </template>
-        
-        <!-- <t t-if="o.image">
-            <img t-att-src="'data:image/png;base64,'+o.image.decode('utf-8')" style="max-width: 200px; max-height: 200px;" />
-        </t> -->
-    <record id="student_report" model="ir.actions.report">
-        <field name="name">Print Student Report</field>
-        <field name="model">school.student</field>
-        <field name="binding_model_id" ref="model_school_student"></field>
-        <field name="report_type">qweb-pdf</field>
-        <field name="report_name">School_Management.school_student_qweb_report_template</field>
-        <field name="report_file">School_Management.school_student_qweb_report_template</field>
-        <field name="binding_type">report</field>
-    </record>
+
+
+
+        <record id="student_report_action" model="ir.actions.report">
+            <field name="name">Print Student Report</field>
+            <field name="model">school.student</field>
+            <field name="binding_model_id" ref="model_school_student"></field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">School_Management.school_student_qweb_report_template</field>
+            <field name="report_file">School_Management.school_student_qweb_report_template</field>
+            <field name="binding_type">report</field>
+        </record>
     </data>
 </odoo>

@@ -20,6 +20,9 @@
         'views/sports.xml',
         'views/school_menu.xml',
         'reports/student_report.xml',
+        'reports/inherit_qweb.xml',
+        'views/mail_template.xml',
+        
     ],
     'images': ['static/description/icon.png'],
     'demo': ['data/demo.xml'],

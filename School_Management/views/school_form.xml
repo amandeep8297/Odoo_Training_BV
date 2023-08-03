@@ -16,10 +16,11 @@
             <button name="%(action_submit)d" string="Submit" type="action" class="btn btn-default" />
             <button id="button_cancel_admission" name="%(action_cancel_admission)d" string="Delete Admission" class="btn btn-default" type="action" />
             <button special="cancel" string="Cancel" class="btn btn-default"/>
+            <button name="action_send_mail" string="Send Email" class="oe_highlight" data-hotkey="m" type="object" />
             <field name="status" options="{'clickable':'1'}" widget="statusbar" nolabel="1" />
-              <button class="oe_stat_button" type='object' name='toggle_active' icon='fa-archive' style='background-color:LightGray;color:mediumpurple'>
-                <field name='active' widget='boolean_button' options="{'terminology':'archived'}" />
-              </button>
+            <button class="oe_stat_button" type='object' name='toggle_active' icon='fa-archive' style='background-color:LightGray;color:mediumpurple'>
+              <field name='active' widget='boolean_button' options="{'terminology':'archived'}" />
+            </button>
           </header>
           <h1 class='text-center'>
             School Management System
@@ -48,7 +49,7 @@
                   <group>
                     <field name="std_div" />
                     <field name="roll_number" />
-                    <field name="grade_level" widget="float_toggle" options="{'range':[1,2,3,4,5,6,7,8,9,10,11,12]}" style="width:100px;"/>
+                    <field name="grade_level" options="{'range':[1,2,3,4,5,6,7,8,9,10,11,12]}" style="width:100px;"/>
                     <field name="dob" />
                     <field name="age" />
                     <field name="game" context="{'active_id' : context.get('active_id')}" widget='many2many_tags'/>
@@ -146,7 +147,7 @@
                 </div>
                 <div class="oe_kanban_details d-flex-column">
                   <ul style="list-style-type:none;">
-                    
+
                     <li>
                       <b>Name : </b>
                       <field name="name"/>
