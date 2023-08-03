@@ -83,8 +83,8 @@
             <field name="model">school.student</field>
             <field name="binding_model_id" ref="model_school_student"></field>
             <field name="report_type">qweb-pdf</field>
-            <field name="report_name">School_Management.school_student_qweb_report_template</field>
-            <field name="report_file">School_Management.school_student_qweb_report_template</field>
+            <field name="report_name">school_management.school_student_qweb_report_template</field>
+            <field name="report_file">school_management.school_student_qweb_report_template</field>
             <field name="binding_type">report</field>
         </record>
     </data>

@@ -4,7 +4,7 @@ class SportsPlayer(models.Model):
     _name = "sports.player"
     _inherit = ["mail.thread"]
     _description="Sports data"
-    _rec_name = 'game'
+    _rec_name = 'height'
     
     name = fields.Many2many('school.student','game',string="Student Name ")
     height=fields.Float()

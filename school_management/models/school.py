@@ -105,9 +105,25 @@ class SchoolStudent(models.Model):
     formatted_address = fields.Char(
         string="Student Address", compute="_compute_formatted_address"
     )
+    @api.model
+    def cron_student_report(self):
+        today = date.today()
+        students_above_18 = self.env['school.student'].search([
+            ('active', '=', True),
+            ('dob', '!=', False),
+        ])
+        for student in students_above_18:
+            age = today.year - student.dob.year - ((today.month, today.day) < (student.dob.month, student.dob.day))
+            if age > 18:
+                student.action_schedule_cron_job()
 
+    def action_schedule_cron_job(self):
+        template_id=self.env.ref('school_management.student_cron_scheduler').id
+        template=self.env['mail.template'].browse(template_id)
+        template.send_mail(self.id, force_send=True)
+        
     def action_send_mail(self):
-        template_id=self.env.ref('School_Management.student_email_template').id
+        template_id=self.env.ref('school_management.student_email_template').id
         template=self.env['mail.template'].browse(template_id)
         template.send_mail(self.id, force_send=True)
 

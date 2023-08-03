@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <template id="student_inherit_report" inherit_id="School_Management.school_student_qweb_report_template">
+        <template id="student_inherit_report" inherit_id="school_management.school_student_qweb_report_template">
             <xpath expr="//div[hasclass('card-body')]" position="inside">
                 <div>
                     <strong>New Field:</strong>

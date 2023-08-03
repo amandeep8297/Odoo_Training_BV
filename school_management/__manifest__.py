@@ -22,6 +22,7 @@
         'reports/student_report.xml',
         'reports/inherit_qweb.xml',
         'views/mail_template.xml',
+        'views/cron.xml',
         
     ],
     'images': ['static/description/icon.png'],

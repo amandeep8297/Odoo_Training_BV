@@ -8,8 +8,6 @@
       <field name="name">School Module Form</field>
       <field name="model">school.student</field>
       <field name="arch" type="xml">
-
-
         <form string="Form View">
           <header>
             <button name="rainbow_effect" string="Save" type="object" class="btn-primary" />

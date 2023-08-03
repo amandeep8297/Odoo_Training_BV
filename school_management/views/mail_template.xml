@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data noupdate='0'>
+        <record id="student_email_template" model="mail.template">
+            <field name="name">Parent Email</field>
+            <field name="model_id" ref="school_management.model_school_student"/>
+            <field name="email_from">{{ user.email }}</field>
+            <field name="email_to">{{ object.email_parent }}</field>
+            <field name="subject">🎓 Student Card - Enroll {{ object.enroll }}</field>
+            <field name="body_html" type="html">
+                <div>
+                    <style>
+                        /* CSS for the email body */
+                        body {
+                            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                            color: #444;
+                            line-height: 1.6;
+                        }
+
+                        .header {
+                            background-color: #4CAF50;
+                            color: #fff;
+                            padding: 20px;
+                            text-align: center;
+                        }
+
+                        .header h1 {
+                            font-size: 28px;
+                            margin: 0;
+                        }
+
+                        .content {
+                            padding: 20px;
+                            background-color: #f9f9f9;
+                            border-radius: 5px;
+                        }
+
+                        .footer {
+                            text-align: center;
+                            color: #888;
+                            font-size: 14px;
+                            padding-top: 20px;
+                        }
+
+                        .btn {
+                            display: inline-block;
+                            background-color: #007BFF;
+                            color: #fff;
+                            padding: 10px 20px;
+                            text-decoration: none;
+                            border-radius: 5px;
+                        }
+
+                        .btn:hover {
+                            background-color: #0056b3;
+                        }
+                    </style>
+                    <div class="header">
+                        <h1>🎓 Student ID Card  🎓</h1>
+                    </div>
+                    <div class="content">
+                        <p>Dear <t t-out="object.parent_name"/>,</p>
+                        <p>
+                            We are delighted to share your ward's Identity Card with you. Please find the attached Identity Card.
+                        </p>
+                        <p>
+                            If you have any questions or need further assistance, feel free to contact us.
+                        </p>
+                        <p>
+                            <a href="/web/report/pdf/school_management.report_student_identity_card/{{ object.id }}" class="btn">Download Identity Card</a>
+                        </p>
+                    </div>
+                    <div class="footer">
+                        <p>Best Regards,</p>
+                        <p>TG Team</p>
+                        <p>Contact: [Contact Information]</p>
+                    </div>
+                </div>
+            </field>
+            <field name="report_template" ref="student_report_action" />
+            <field name="report_name">{{object.name}} {{object.enroll}} Report</field>
+        </record>
+
+
+        <record id="student_cron_scheduler" model="mail.template">
+            <field name="name">Passout Students</field>
+            <field name="model_id" ref="school_management.model_school_student"/>
+            <field name="email_from">{{ user.email }}</field>
+            <field name="email_to">{{ object.email_parent }}</field>
+            <field name="subject">🎓 Farewell Time - {{ object.name }}</field>
+            <field name="body_html" type="html">
+                <div>
+                    <style>
+                        /* CSS for the email body */
+                        body {
+                            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                            color: #444;
+                            line-height: 1.6;
+                        }
+
+                        .header {
+                            background-color: #4CAF50;
+                            color: #fff;
+                            padding: 20px;
+                            text-align: center;
+                        }
+
+                        .header h1 {
+                            font-size: 28px;
+                            margin: 0;
+                        }
+
+                        .content {
+                            padding: 20px;
+                            background-color: #f9f9f9;
+                            border-radius: 5px;
+                        }
+
+                        .footer {
+                            text-align: center;
+                            color: #888;
+                            font-size: 14px;
+                            padding-top: 20px;
+                        }
+                    </style>
+                    <div class="header">
+                        <h1>🎓 It's a Farewell Time  🎓</h1>
+                    </div>
+                    <div class="content">
+                        <p>Dear <t t-out="object.name"/>,</p>
+                        <p>
+                            We are delighted to announce that school journey to an end
+                        </p>
+                        <p>
+                            If you any need further assistance regarding farewell party, feel free to contact us.
+                        </p>
+                    </div>
+                    <div class="footer">
+                        <p>Best Regards,</p>
+                        <p>TG Team</p>
+                    </div>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
