@@ -23,7 +23,7 @@
         'reports/inherit_qweb.xml',
         'views/mail_template.xml',
         'views/cron.xml',
-        
+            
     ],
     'images': ['static/description/icon.png'],
     'demo': ['data/demo.xml'],

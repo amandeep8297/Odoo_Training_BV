@@ -4,14 +4,14 @@ from odoo.exceptions import UserError, ValidationError
 from odoo.tools.translate import _
 from dateutil import relativedelta
 import re
-
+from random import randint
 
 class SchoolStudent(models.Model):
     _name = "school.student"
     _inherit = ["mail.thread", "base"]
     _description = "Student Management Module"
     _rec_name = "roll_number"
-    _order = "enroll asc"
+    _order = "create_date asc"
 
     name = fields.Char(required=True)
     std_div = fields.Char()
@@ -105,6 +105,8 @@ class SchoolStudent(models.Model):
     formatted_address = fields.Char(
         string="Student Address", compute="_compute_formatted_address"
     )
+    
+    
     @api.model
     def cron_student_report(self):
         today = date.today()
@@ -161,6 +163,11 @@ class SchoolStudent(models.Model):
     def copy(self, default=None):
         if default is None:
             default = {}
+        default.update({
+            'name' : self.name[:-2] + str(self.id +1),
+            'phone' : str(randint(pow(10, 9), pow(10, 10)-1)),
+            'phone_parent' : str(randint(pow(10, 9), pow(10, 10)-1))
+        })
         return super(SchoolStudent, self).copy(default)
 
     @api.depends("std_div", "stream", "grade_level")
