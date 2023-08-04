@@ -1,5 +1,5 @@
 from odoo import fields,api, models
-
+from random import randint
 class SchoolTeacher(models.Model):
     _name = 'school.teacher'
     _description = 'Teacher'
@@ -37,6 +37,26 @@ class SchoolTeacher(models.Model):
                 'message':'Saved Successfully',
                 'type':'rainbow_man'
             }
-        } 
+        }
+       
+    def copy(self, default=None):
+        if default is None:
+            default = {}
+            
+        default.update({
+            'name' : self.name[:-2] + str(self.id),
+            'phone' : str(randint(pow(10, 9), pow(10, 10)-1)),
+            'std_div' : self.std_div[:-2] + str(self.id)
+        })
+        return super(SchoolTeacher, self).copy(default)
+
+    @api.model
+    def name_search(self, args=None,limit=100):
+        if args is None:
+            args = []
+        query = """SELECT * FROM school_teacher WHERE name='Prithvi 01'"""
+        self.env.cr.execute(query)
+        return self.env.cr.fetchall().name_search()
+
     
-   
+        
