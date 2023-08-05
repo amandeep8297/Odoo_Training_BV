@@ -310,5 +310,7 @@ class SchoolStudent(models.Model):
         for rec in self:
             if rec.dob and rec.dob > today:
                 raise ValidationError(_("Invalid Date of Birth."))
-
+    @api.onchange('name')
+    def _res_name(self):
+        self.name = self.env['ir.config_parameter'].sudo().get_param('school')
 

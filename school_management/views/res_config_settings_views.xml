@@ -1,25 +1,91 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Add/Update the configuration view -->
         <record id="res_config_settings_view_form" model="ir.ui.view">
             <field name="name">res.config.settings.view.school</field>
             <field name="model">res.config.settings</field>
             <field name="inherit_id" ref="base.res_config_settings_view_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[hasclass('settings')]" position="inside">
-
                     <div class="app_settings_block" data-string="School" id="school" string="School" data-key="school_management">
-                        <h2>School Management</h2>
                         <div class="row mt16 o_settings_container" id="school_setting_id">
+                            <!-- Student Configuration -->
                             <div class="col-12 col-lg-6 o_setting_box">
                                 <div class="o_setting_left_pane"/>
                                 <div class="o_setting_right_pane">
-                                    <span class="o_form_label">Delay in paying school fee</span>
-                                    <div class="text-muted content-group mt16">
-                                        <span>Send an alert to pay within </span>
-                                        <field name="global_config_field" class="text-center" style="width: 10%; min-width: 4rem;" />
-                                        <span> days</span>
-                                    </div>
+                                    <span class="o_form_label">School Name</span>
+                                    <field name="school" style="width: 10%; min-width: 4rem;" />
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Student Registration Fee</span>
+                                    <field name="student_registration_fee" class="text-center" style="width: 10%; min-width: 4rem;" />
+                                    <span> USD</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Allow Multiple Courses</span>
+                                    <field name="allow_multiple_courses" class="text-center" style="width: 10%; min-width: 4rem;" />
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Allow Student Transfers</span>
+                                    <field name="allow_student_transfers" class="text-center" style="width: 10%; min-width: 4rem;" />
+                                </div>
+                            </div>
+
+                            <!-- Teacher Configuration -->
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Teacher Contract Period (Months)</span>
+                                    <field name="teacher_contract_period" class="text-center" style="width: 10%; min-width: 4rem;" />
+                                    <span> months</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Allow Teacher Leave Management</span>
+                                    <field name="allow_teacher_leave_management" class="text-center" style="width: 10%; min-width: 4rem;" />
+                                </div>
+                            </div>
+
+                            <!-- Class Configuration -->
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Default Class Capacity</span>
+                                    <field name="defult_class_capacity" class="text-center" style="width: 10%; min-width: 4rem;" />
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Allow Online Classes</span>
+                                    <field name="allow_online_classes" class="text-center" style="width: 10%; min-width: 4rem;" />
+                                </div>
+                            </div>    
+
+                            <!-- Exam Configuration -->
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Enable Exam Management</span>
+                                    <field name="enable_exam_management" class="text-center" style="width: 10%; min-width: 4rem;" />
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Enable Grading System</span>
+                                    <field name="enable_grading_system" class="text-center" style="width: 10%; min-width: 4rem;" />
                                 </div>
                             </div>
                         </div>
@@ -28,6 +94,7 @@
             </field>
         </record>
 
+        <!-- Add the action for the configuration view -->
         <record id="school_config_settings_action" model="ir.actions.act_window">
             <field name="name">Settings</field>
             <field name="type">ir.actions.act_window</field>
@@ -37,6 +104,7 @@
             <field name="context">{'module' : 'school_management', 'bin_size': False}</field>
         </record>
 
+        <!-- Add the menu item to access the configuration view -->
         <menuitem id="school_config_settings_menu" 
             name="Global config Settings"
             parent="school_management.menu_range" 
