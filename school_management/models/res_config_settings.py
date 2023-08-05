@@ -4,7 +4,7 @@ from odoo import models,api,fields
 class SchoolConfig(models.TransientModel):
     _inherit = 'res.config.settings'
     
-    school = fields.Char(string="School Name", config_parameter='school_management.school')
+    school = fields.Char(string="School Name")
     module_enabled = fields.Boolean(string="Enable School Module", default=True)
     student_registration_fee = fields.Float(string="Student Registration Fee", default=100.0)
     allow_multiple_courses = fields.Boolean(string="Allow Multiple Courses", default=True)

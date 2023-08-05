@@ -15,6 +15,7 @@ class SchoolStudent(models.Model):
 
     name = fields.Char(required=True)
     std_div = fields.Char()
+    principal=fields.Char()
     roll_number = fields.Integer()
     phone = fields.Char(required=True, tracking=True)
     enroll = fields.Char(readonly=1, tracking=True)
@@ -310,7 +311,19 @@ class SchoolStudent(models.Model):
         for rec in self:
             if rec.dob and rec.dob > today:
                 raise ValidationError(_("Invalid Date of Birth."))
-    @api.onchange('name')
+    @api.onchange('principal')
     def _res_name(self):
-        self.name = self.env['ir.config_parameter'].sudo().get_param('school')
+        self.principal = self.env['ir.config_parameter'].sudo().get_param('school')
+        
+    def action_psql(self):
+        query = """SELECT name, std_div FROM school_student where id=7;"""
+        # query = """SELECT name, standard FROM students_profile WHERE standard = '6'"""       
+        # query = """UPDATE students_profile SET name='QWERTY', division= 'A' WHERE id = 81; """
+        # query = """DELETE FROM students_profile WHERE id=7"""
+
+        result = self.env.cr.execute(query)
+        res = self.env.cr.fetchall()
+        print(res)
+
+
 
