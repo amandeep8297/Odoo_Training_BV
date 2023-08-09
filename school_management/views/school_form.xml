@@ -15,6 +15,7 @@
             <button id="button_cancel_admission" name="%(action_cancel_admission)d" string="Delete Admission" class="btn btn-default" type="action" />
             <button special="cancel" string="Cancel" class="btn btn-default"/>
             <button name="action_send_mail" string="Send Email" class="oe_highlight" data-hotkey="m" type="object" />
+            <button name="action_print_excel_report" string="Print xlsx report" class="oe_highlight" data-hotkey="m" type="object" />
             <field name="status" options="{'clickable':'1'}" widget="statusbar" nolabel="1" />
             <button class="oe_stat_button" type='object' name='toggle_active' icon='fa-archive' style='background-color:LightGray;color:mediumpurple'>
               <field name='active' widget='boolean_button' options="{'terminology':'archived'}" />
@@ -257,6 +258,7 @@
     </record>
     <!-- Action -->
 
+   
 
     <record id="action_school_student_science" model="ir.actions.act_window">
       <field name="name">Science Students</field>

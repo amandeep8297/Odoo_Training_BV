@@ -76,8 +76,6 @@
             </t>
         </template>
 
-
-
         <record id="student_report_action" model="ir.actions.report">
             <field name="name">Print Student Report</field>
             <field name="model">school.student</field>

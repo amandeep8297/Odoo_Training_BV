@@ -129,9 +129,17 @@ class SchoolStudent(models.Model):
         template_id=self.env.ref('school_management.student_email_template').id
         template=self.env['mail.template'].browse(template_id)
         template.send_mail(self.id, force_send=True)
+        
+    def action_print_excel_report(self):
+        students = self.env['school.student'].search([])
+        data= {
+            'students': students,
+            'form_data': self.read()[0]
+        }
+        print(data)
+        return self.env.ref('school_management.action_report_student').report_action(self,data=data)
 
     attachment_ids = fields.Many2many('ir.attachment', 'school_student_attachment_rel', 'student_id', 'attachment_id', string="Attachments")
-    # Other fields and methods of the school.student model...       
     @api.depends("street", "city", "state_id", "zip", "country_id")
     def _compute_formatted_address(self):
         for partner in self:
@@ -311,6 +319,7 @@ class SchoolStudent(models.Model):
         for rec in self:
             if rec.dob and rec.dob > today:
                 raise ValidationError(_("Invalid Date of Birth."))
+            
     @api.onchange('principal')
     def _res_name(self):
         self.principal = self.env['ir.config_parameter'].sudo().get_param('school')

@@ -19,7 +19,7 @@ class SchoolConfig(models.TransientModel):
     def set_values(self):
         super(SchoolConfig, self).set_values()
         config_param = self.env['ir.config_parameter'].sudo()
-        self.env['school.student'].sudo().search([]).write({'name': self.school})
+        self.env['school.student'].sudo().search([]).write({'principal': self.school})
         config_param.set_param('school_management.school', self.school)
         config_param.set_param('school_management.module_enabled', self.module_enabled)
         config_param.set_param('school_management.student_registration_fee', str(self.student_registration_fee))
@@ -31,6 +31,7 @@ class SchoolConfig(models.TransientModel):
         config_param.set_param('school_management.allow_online_classes', self.allow_online_classes)
         config_param.set_param('school_management.enable_exam_management', self.enable_exam_management)
         config_param.set_param('school_management.enable_grading_system', self.enable_grading_system)
+        
 
     def get_values(self):
         res = super(SchoolConfig, self).get_values()
