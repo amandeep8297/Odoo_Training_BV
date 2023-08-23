@@ -3,3 +3,4 @@ access_school_student,school.student,model_school_student,,1,1,1,1
 access_school_teacher,school.teacher,model_school_teacher,,1,1,1,1
 access_cancel_admission_wizard,cancel_admission.wizard,model_cancel_admission_wizard,,1,1,1,1
 access_sports_id,sports.player,model_sports_player,,1,1,1,1
+

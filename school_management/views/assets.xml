@@ -1,0 +1,8 @@
+<odoo>
+    <data>
+        <record model="ir.actions.client" id="todo_action">
+            <field name="name">todo</field>
+            <field name="tag">school_management.task</field>
+        </record>
+    </data>
+</odoo>

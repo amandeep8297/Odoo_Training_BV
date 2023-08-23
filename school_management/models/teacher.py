@@ -49,14 +49,16 @@ class SchoolTeacher(models.Model):
             'std_div' : self.std_div[:-2] + str(self.id)
         })
         return super(SchoolTeacher, self).copy(default)
-
+    def action_to_do_list(self):
+        return {
+            'type': 'ir.actions.act_url',
+            'target': 'new',
+            'url': 'http://127.0.0.1:5500/school_management/static/src/index.html',
+}
     @api.model
     def name_search(self, args=None,limit=100):
         if args is None:
             args = []
         query = """SELECT * FROM school_teacher WHERE name='Prithvi 01'"""
         self.env.cr.execute(query)
-        return self.env.cr.fetchall().name_search()
-
-    
-        
+        return self.env.cr.fetchall().name_search()       

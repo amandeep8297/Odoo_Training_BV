@@ -10,9 +10,7 @@
         <form string="Form View">
           <header>
             <button name="rainbow_effect" string="Save" type="object" class="btn-success" />
-
-            <button id="button_cancel_admission" name="%(action_cancel_admission)d"
-              string="Delete Teacher" class="btn btn-default" type="action" />
+            <button id="button_cancel_admission" name="%(action_cancel_admission)d" string="Delete Teacher" class="btn btn-default" type="action" />
             <button special="cancel" string="Cancel" class="btn btn-default" />
             <field name="stream" options="{'clickable':'1'}" widget="statusbar" nolabel="1" />
           </header>
@@ -47,8 +45,7 @@
                   <group>
                     <field name="teacher_id" />
                     <field name="std_div" />
-                    <field name="stream"
-                      attrs="{'invisible': [('std_div', 'not in', ['11', '12'])]}" />
+                    <field name="stream" attrs="{'invisible': [('std_div', 'not in', ['11', '12'])]}" />
                   </group>
                   <group>
                     <field name="teacher_image" widget="image" class="oe_avatar" />
@@ -81,6 +78,7 @@
                   </div>
                 </group>
               </page>
+
             </notebook>
           </sheet>
           <div class="oe_chatter">
@@ -101,8 +99,7 @@
           <templates>
             <t t-name="kanban-box">
               <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
-                <div class="o_kanban_image d-none d-md-block"
-                  t-attf-style="background-image:url('#{kanban_image('school.teacher','teacher_image',record.id.raw_value,placeholder)}')">
+                <div class="o_kanban_image d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('school.teacher','teacher_image',record.id.raw_value,placeholder)}')">
                 </div>
                 <div class="oe_kanban_details d-flex-column">
                   <ul style="list-style-type:none;">
@@ -138,13 +135,11 @@
       <field name="name">Teacher module tree</field>
       <field name="model">school.teacher</field>
       <field name="arch" type="xml">
-        <tree string="Channel" decoration-danger="stream == 'science'"
-          decoration-info="stream == 'commerce'" decoration-success="stream == 'arts'">
+        <tree string="Channel" decoration-danger="stream == 'science'" decoration-info="stream == 'commerce'" decoration-success="stream == 'arts'">
           <field name="name" />
           <field name="std_div" />
           <field name="grade_level" />
-          <field name="stream" widget='badge' decoration-danger="stream == 'science'"
-            decoration-info="stream == 'commerce'" decoration-success="stream == 'arts'" />
+          <field name="stream" widget='badge' decoration-danger="stream == 'science'" decoration-info="stream == 'commerce'" decoration-success="stream == 'arts'" />
         </tree>
       </field>
     </record>
@@ -155,12 +150,11 @@
         <search>
           <field name="name" />
           <field name="std_div" />
-          <filter name="filter_10th_record" string="Nursery to 10th"
-            domain="[('grade_level', '&lt;', '11')]" />
-          <filter name="filter_11th_12th_record" string="11th - 12th"
-            domain="[('grade_level', '&gt;', '10')]" />
+          <filter name="filter_10th_record" string="Nursery to 10th" domain="[('grade_level', '&lt;', '11')]" />
+          <filter name="filter_11th_12th_record" string="11th - 12th" domain="[('grade_level', '&gt;', '10')]" />
         </search>
       </field>
     </record>
+
   </data>
 </odoo>

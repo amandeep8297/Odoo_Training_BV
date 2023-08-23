@@ -24,8 +24,8 @@
               <field name="sports_teacher" widget="many2one_avatar" />
             </group>
           </group>
+            
           <notebook>
-
             <page string="Students">
               <field name="name">
                 <kanban string="Student Kanban" class="o_res_partner_kanban">
@@ -34,8 +34,7 @@
                   <templates>
                     <t t-name="kanban-box">
                       <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
-                        <div class="o_kanban_image d-none d-md-block"
-                          t-attf-style="background-image:url('#{kanban_image('school.student','image',record.id.raw_value,placeholder)}')">
+                        <div class="o_kanban_image d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('school.student','image',record.id.raw_value,placeholder)}')">
                         </div>
                         <div class="oe_kanban_details d-flex-column">
                           <ul style="list-style-type:none;">
@@ -63,6 +62,7 @@
                 </kanban>
               </field>
             </page>
+             <TodoList/>  
           </notebook>
         </sheet>
         <div class="oe_chatter">
@@ -71,19 +71,18 @@
         </div>
       </form>
     </field>
+     
   </record>
   <!-- Tree View -->
   <record id="player_view_tree" model="ir.ui.view">
     <field name="name">Sports module tree</field>
     <field name="model">sports.player</field>
     <field name="arch" type="xml">
-      <tree string="Channel" decoration-danger="gender == 'female'"
-        decoration-info="gender == 'other'" decoration-success="gender == 'male'">
+      <tree string="Channel" decoration-danger="gender == 'female'" decoration-info="gender == 'other'" decoration-success="gender == 'male'">
         <field name="game" widget="badge" />
         <field name="height" />
         <field name="weight" />
-        <field name="gender" widget="badge" decoration-danger="gender == 'female'"
-          decoration-info="gender == 'other'" decoration-success="gender == 'male'" />
+        <field name="gender" widget="badge" decoration-danger="gender == 'female'" decoration-info="gender == 'other'" decoration-success="gender == 'male'" />
         <field name="bloodgrp" widget="badge" />
       </tree>
     </field>
@@ -112,8 +111,7 @@
         <templates>
           <t t-name="kanban-box">
             <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
-              <div class="o_kanban_image d-none d-md-block"
-              t-attf-style="background-image:url('/web/image/sports.player/#{record.id.value}/sports_img/placeholder')">
+              <div class="o_kanban_image d-none d-md-block" t-attf-style="background-image:url('/web/image/sports.player/#{record.id.value}/sports_img/placeholder')">
               </div>
               <div class="oe_kanban_details d-flex-column">
                 <ul style="list-style-type:none;">

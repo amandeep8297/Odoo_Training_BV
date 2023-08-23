@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="school_management.clientaction" owl="1">
+        <h1>yrytfhgv</h1>
+        <p>hdhtdhgfhg</p>
+        <button t-on-mouseup="increment" t-on-mousedown="decrement" t-ref="btn">INCREMENT</button>
+        <h3 t-out="count.value"></h3>
+        <h3 t-out="down.value"></h3>
+    </t>
+
+</templates>
+
