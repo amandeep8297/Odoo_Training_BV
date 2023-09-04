@@ -14,6 +14,7 @@ odoo.define("pos_training_inherit.CustomerDetailsPopup", function (require) {
      */
     setup() {
       super.setup();
+
       this.state = useState({ inputValue: this.props.startingValue });
       this.details = useRef("details");
 
@@ -28,13 +29,13 @@ odoo.define("pos_training_inherit.CustomerDetailsPopup", function (require) {
     }
 
     async confirm() {
+      console.log(this.partner);
       const mob = this.details.el.value;
 
       const loadedData = await this.env.services.rpc({
         model: "res.partner",
         method: "search_count",
         args: [[["details", "=", this.state.inputValue]]],
-       
       });
 
       console.log(loadedData);

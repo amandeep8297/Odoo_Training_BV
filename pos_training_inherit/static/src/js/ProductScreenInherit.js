@@ -11,7 +11,9 @@ odoo.define("pos_training.inherit", function (require) {
         super.setup();
       }
       async onClick() {
+    
         const selectOrderline = this.env.pos.get_order();
+        if (!selectOrderline) return;
         const { confirmed, payload: details } = await this.showPopup(
           "CustomerDetailsPopup",
           {
@@ -34,6 +36,7 @@ odoo.define("pos_training.inherit", function (require) {
           super._onClickPay();
         }
       }
+   
     };
   CustomerDetailsPopupComponent.template =
     "pos_training_inherit.CustomerDetailsPopupComponent";
