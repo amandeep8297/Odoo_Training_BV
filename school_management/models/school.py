@@ -319,6 +319,7 @@ class SchoolStudent(models.Model):
         for rec in self:
             if rec.dob and rec.dob > today:
                 raise ValidationError(_("Invalid Date of Birth."))
+
             
     @api.onchange('principal')
     def _res_name(self):
@@ -326,10 +327,6 @@ class SchoolStudent(models.Model):
         
     def action_psql(self):
         query = """SELECT name, std_div FROM school_student where id=7;"""
-        # query = """SELECT name, standard FROM students_profile WHERE standard = '6'"""       
-        # query = """UPDATE students_profile SET name='QWERTY', division= 'A' WHERE id = 81; """
-        # query = """DELETE FROM students_profile WHERE id=7"""
-
         result = self.env.cr.execute(query)
         res = self.env.cr.fetchall()
         print(res)

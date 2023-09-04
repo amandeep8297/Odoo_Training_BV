@@ -4,5 +4,9 @@
             <field name="name">todo</field>
             <field name="tag">school_management.task</field>
         </record>
+        <record model="ir.actions.client" id="calculator_action">
+            <field name="name">Calculator</field>
+            <field name="tag">student.fee</field>
+        </record>
     </data>
 </odoo>

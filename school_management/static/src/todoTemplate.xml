@@ -1,13 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<templates xml:space="preserve">
-
-    <t t-name="school_management.clientaction" owl="1">
-        <h1>yrytfhgv</h1>
-        <p>hdhtdhgfhg</p>
-        <button t-on-mouseup="increment" t-on-mousedown="decrement" t-ref="btn">INCREMENT</button>
-        <h3 t-out="count.value"></h3>
-        <h3 t-out="down.value"></h3>
-    </t>
-
-</templates>
-
+<templates xml:space="preserve" >
+    <t t-name="school_management.clientaction" owl="1" >
+        <form>
+    <div class="todo-app" style="background-color: #RRGGBB;">
+                <h1>Student TODO List</h1>
+                <div class="input-section">
+                    <input type="text" t-model="state.newTask" class="task-input" placeholder="Enter a new task"/>
+                    <button class="btn-primary" t-on-click="addTask">Add Task</button>
+                </div>
+                <ul class="task-list">
+                    <li t-foreach="state.tasks" t-as="task" t-key="task_index" class="task-item">
+                        <input type="checkbox" t-att-checked="getTaskDone(task)" t-on-change="() => toggleTaskDone(task)"/>
+                        <span t-esc="task.name"/>
+                        <button class="btn-success" t-on-click="() => editTask(task)">Edit</button>
+                        <button class="btn-danger" t-on-click="() => deleteTask(task)">Delete</button>
+                    </li>
+                </ul>
+            </div>
+            <form>
+                <style>
+            .todo-app {
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                background-color: #f9f9f9;
+                font-family: Arial, sans-serif;
+                background: rgba(0, 128, 0, 0.3);
+            }
+            h1 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+            .input-section {
+                display: flex;
+                margin-bottom: 10px;
+            }
+            .task-input {
+                flex: 1;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+            }
+            .btn-primary {
+                padding: 8px 12px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+            .task-list {
+                list-style: none;
+                padding: 0;
+            }
+            .task-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 8px;
+                margin: 5px 0;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+            }
+            .btn-primary.delete-button {
+                padding: 4px 8px;
+                background-color: #dc3545;
+                color: #fff;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+                </style>
+            </t>
+        </templates>

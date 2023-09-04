@@ -7,6 +7,6 @@
     <menuitem id="menu_school_student_commerce" name="Commerce " parent="school_management.menu_data" action="school_management.action_school_student_commerce" sequence="30" />
     <menuitem id="menu_school_student_arts" name="Arts " parent="school_management.menu_data" action="school_management.action_school_student_arts" sequence="40" />
     <menuitem id="sports_data" name="Student Game Table" parent="menu_range" action="sports_submit" sequence='50'/>
-    <menuitem id="menu_view_todo_task" name="View Todo Task" action="todo_action" parent="menu_range" sequence="60"/>
-
+    <menuitem id="menu_view_todo_task" name="Student To-Do Task" action="todo_action" parent="menu_range" sequence="60"/>
+    <menuitem id="menu_view_calculator" name="Fee calculator" action="calculator_action" parent="menu_range" sequence="70"/>
 </odoo>
