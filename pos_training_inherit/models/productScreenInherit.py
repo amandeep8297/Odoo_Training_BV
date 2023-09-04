@@ -15,6 +15,7 @@ class PosCustomData(models.Model):
                 ])
                 if duplicate_orders:
                     raise exceptions.ValidationError("Mobile number must be unique per customer.")
+                
 class PosCustomSession(models.Model):
     _inherit='pos.session'
 

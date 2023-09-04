@@ -7,7 +7,6 @@ odoo.define("partnerInherit", function (require) {
     class extends PartnerDetailsEdit {
       setup() {
         super.setup();
-        console.log(this.props.partner.mobile_no);
         this.changes.mobile_no = this.props.partner.mobile_no || "";
       }
     };
