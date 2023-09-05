@@ -31,7 +31,7 @@ Default Addons Path: odoo addons > point_of_sale > static > src > js > Screens
 ## Language used:
 Oddo OWL framework, Javascript, XML, Python3
 
-## FrontEnd Work:
+## Frontend Work:
 #### Worked on Screen Component List :
 1. ClientListScreen
 2. PaymentScreen
