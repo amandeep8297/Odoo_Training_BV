@@ -11,7 +11,6 @@ odoo.define("pos_training.inherit", function (require) {
         super.setup();
       }
       async onClick() {
-    
         const selectOrderline = this.env.pos.get_order();
         if (!selectOrderline) return;
         const { confirmed, payload: details } = await this.showPopup(
@@ -19,6 +18,7 @@ odoo.define("pos_training.inherit", function (require) {
           {
             startingValue: selectOrderline.get_details(),
             title: this.env._t("Any additional details"),
+            confirmText: _lt("Save"),
           }
         );
         if (confirmed) {
@@ -32,11 +32,11 @@ odoo.define("pos_training.inherit", function (require) {
             title: _lt("Error"),
             body: _lt(`Customer selection required!`),
           });
+          
         } else {
           super._onClickPay();
         }
       }
-   
     };
   CustomerDetailsPopupComponent.template =
     "pos_training_inherit.CustomerDetailsPopupComponent";

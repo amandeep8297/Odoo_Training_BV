@@ -23,12 +23,6 @@ class PosCustomSession(models.Model):
         res = super()._loader_params_res_partner()
         res.get('search_params').get('fields').append('mobile_no')
         return res
-    # @api.model
-    # def _order_fields(self, ui_order):
-    #     _older_fields = super(PosCustomData, self)._order_fields(ui_order)
-    #     _older_fields.update({
-    #         'mobile': ui_order.get('customerMobile'),
-    #     })
-    #     return _older_fields
+ 
 
     

@@ -1,1 +1,1 @@
-from . import inherit_session,partner_inherit, productScreenInherit
+from . import partner_inherit, productScreenInherit
