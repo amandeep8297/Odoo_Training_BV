@@ -37,6 +37,7 @@ Oddo OWL framework, Javascript, XML, Python3
 2. PaymentScreen
 3. ProductScreen
 
+### Features:
 #### -> Mobile Number Field Integration:
    - Integrate a unique mobile number field in the POS to be stored in the backend.
    - Ensure each mobile number is unique for every customer.
