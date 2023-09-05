@@ -32,6 +32,13 @@ Default Addons Path: odoo addons > point_of_sale > static > src > js > Screens
 Oddo OWL framework, Javascript, XML, Python3
 
 ## Frontend Work:
+
+##### Popup Screen:
+[![Second Image](https://drive.google.com/uc?export=view&id=1bgIVEkUvksapGf-11ov4ngTHDqCyCgO3)](https://drive.google.com/file/d/1bgIVEkUvksapGf-11ov4ngTHDqCyCgO3/view?usp=sharing)
+
+##### Receipt Screen
+[![Third Image](https://drive.google.com/uc?export=view&id=1M0pC6wSs1fHQysRmPjVI-IMXGtHadti9)](https://drive.google.com/file/d/1M0pC6wSs1fHQysRmPjVI-IMXGtHadti9/view?usp=sharing)
+
 #### Worked on Screen Component List :
 1. ClientListScreen
 2. PaymentScreen
