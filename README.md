@@ -14,7 +14,7 @@ School management system is learning project as a trainee, so here are some of t
 - [Can see views in Tree, Form, Kanban, Pivot.](#getting-started)
 - [Generate QWeb reports of students ID-Card and Xlsx report of selected records. ](#usage)
 - [Cron job like sending mails.](#contributing)
-- [ Can Delete Admission of any record.](#license)
+- [ Can Delete Admission of any record using Wizard](#license)
 
 
 
