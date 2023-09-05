@@ -1,1 +1,1 @@
-from . import partner_inherit, productScreenInherit
+from . import order_screen, partner_screen
