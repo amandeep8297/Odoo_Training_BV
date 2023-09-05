@@ -15,7 +15,9 @@ odoo.define("pos_inherit.paymentScreenExtension", function (require) {
       export_as_JSON() {
         const json = super.export_as_JSON(...arguments);
         json.details = this.details;
+        
         return json;
+
       }
 
       set_details(num) {
