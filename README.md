@@ -44,17 +44,17 @@ Oddo OWL framework, Javascript, XML, Python3
 2. PaymentScreen
 3. ProductScreen
 
-### Features:
+### Task performed on the following functionalities:
 #### -> Mobile Number Field Integration:
-   - Integrate a unique mobile number field in the POS to be stored in the backend.
-   - Ensure each mobile number is unique for every customer.
-   - Display the mobile number field in the List view of customer selections within the POS.
-   - Include the mobile number in the POS Receipt screen.
+   - Integrated a unique mobile number field in the POS to be stored in the backend.
+   - Ensured each mobile number is unique for every customer.
+   - Displayed the mobile number field in the List view of customer selections within the POS.
+   - Included the mobile number in the POS Receipt screen.
 
 #### -> Popup Text Box Addition at POS Order Level:
-   - Implement a popup text box at the POS order level, with the text value stored in the backend POS order.
-   - Preserve the entered text value even if the popup is closed or the user navigates within the shop.
-   - Print the stored text value in the POS receipt.
+   - Implemented a popup text box at the POS order level, with the text value stored in the backend POS order.
+   - Preserved the entered text value even if the popup is closed or the user navigates within the shop.
+   - Printed the stored text value in the POS receipt.
 
 #### -> Enforce Customer Selection Before Order Proceeds:
    - Restrict order processing without a customer selection.
