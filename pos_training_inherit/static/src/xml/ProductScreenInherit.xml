@@ -3,8 +3,7 @@
     <t t-name="OrderNote" t-inherit="point_of_sale.ProductScreen" t-inherit="point_of_sale.ProductScreen" t-inherit-mode="extension" owl="1">
         <xpath expr="//div[hasclass('control-buttons')]" position="inside">
             <div t-on-click="onClick" class="control-button">
-                <i class="fa fa-sticky-note" />
-                <span> </span>
+                <i class="fa fa-comments" />
                 <span>Additional details</span>
             </div>
         </xpath>
