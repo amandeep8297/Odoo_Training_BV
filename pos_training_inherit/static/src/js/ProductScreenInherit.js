@@ -26,17 +26,40 @@ odoo.define("pos_training.inherit", function (require) {
         }
       }
       async _onClickPay() {
-        console.log(this.env.pos.get_order().partner);
+        // console.log(this.env.pos.get_order().partner);
+        const order = this.env.pos.get_order();
         if (this.env.pos.get_order().partner == null) {
-          Gui.showPopup("ErrorPopup", {
-            title: _lt("Error"),
-            body: _lt(`Customer selection required!`),
-          });
-          
+          const {confirmed} = await this.showPopup('ConfirmPopup', {
+                title: _lt('Customer needed'),
+                body: _lt('Customer selection is mandatory!'),
+            });
+            if (confirmed) {
+                const { confirmed, payload: selectedPartner } = await this.showTempScreen(
+                    'PartnerListScreen',
+                    { partner: null }
+                );
+                if (confirmed) {
+                    order.set_partner(selectedPartner);
+                    order.updatePricelist(selectedPartner);
+                }
+            }
         } else {
-          super._onClickPay();
+            return super._onClickPay(...arguments);
         }
       }
+      
+
+
+
+
+
+
+
+
+
+
+
+
     };
   CustomerDetailsPopupComponent.template =
     "pos_training_inherit.CustomerDetailsPopupComponent";

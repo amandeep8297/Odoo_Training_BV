@@ -31,7 +31,7 @@ odoo.define("pos_inherit.paymentScreenExtension", function (require) {
         const result = super.export_for_printing(...arguments);
         if (this.get_details()) {
           result.details = this.get_details();
-          result.mobile_no = this.props.partner.mobile_no;
+          result.mobile_no = this.partner.mobile_no;
         }
         return result;
       }
