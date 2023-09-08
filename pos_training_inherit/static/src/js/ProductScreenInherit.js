@@ -25,6 +25,7 @@ odoo.define("pos_training.inherit", function (require) {
           selectOrderline.set_details(details);
         }
       }
+      
       async _onClickPay() {
         // console.log(this.env.pos.get_order().partner);
         const order = this.env.pos.get_order();
@@ -48,17 +49,6 @@ odoo.define("pos_training.inherit", function (require) {
         }
       }
       
-
-
-
-
-
-
-
-
-
-
-
 
     };
   CustomerDetailsPopupComponent.template =

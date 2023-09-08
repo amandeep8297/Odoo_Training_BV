@@ -10,9 +10,7 @@ odoo.define("deleteButton", function (require) {
       setup() {
         super.setup();
         console.log("clickedddddd");
-        
       }
- 
     }
     OrderlineDeleteButton.template = "pos_training_inherit.Orderline";
     Registries.Component.add(OrderlineDeleteButton);

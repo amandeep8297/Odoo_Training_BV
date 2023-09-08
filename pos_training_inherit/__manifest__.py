@@ -13,6 +13,10 @@
     "data":[
         "security/ir.model.access.csv",
         "views/posView.xml",
+        "views/order_form.xml",
+        "views/posConfig.xml",
+        "views/sales_location.xml",
+
     ],
     "assets": {
         "point_of_sale.assets": [

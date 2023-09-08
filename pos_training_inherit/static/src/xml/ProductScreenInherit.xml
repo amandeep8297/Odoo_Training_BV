@@ -6,6 +6,7 @@
                 <i class="fa fa-comments" />
                 <span>Additional details</span>
             </div>
+               
         </xpath>
     </t>
 </templates>
