@@ -18,10 +18,9 @@ odoo.define("pos_training_inherit.CustomerDetailsPopup", function (require) {
         error: "",
       });
     }
-
     getPayload() {
       return this.state.inputValue;
-    }
+    } 
   }
   CustomerDetailsPopup.template = "pos_training_inherit.CustomerDetailsPopup";
   CustomerDetailsPopup.defaultProps = {

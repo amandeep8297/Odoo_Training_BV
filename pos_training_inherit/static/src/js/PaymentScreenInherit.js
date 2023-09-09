@@ -15,7 +15,7 @@ odoo.define("paymentScreenInherit", function (require) {
         const res = super._isOrderValid();
         if (this.env.pos.get_order().partner == null) {
           const { confirmed } = await Gui.showPopup("ConfirmPopup", {
-            title: _lt("Customer Requierd"),
+            title: _lt("Customer Required"),
             body: _lt(`A customer is required to proceed!`),
             confirmText: _lt("Select Customer"),
           });

@@ -11,7 +11,7 @@
             </header>
                 <div class="cash-move">
                     <div class="input-amount">
-                        <span>Additional Details: </span><input t-model="state.inputValue" t-ref="details" type="text"/>
+                        <input t-model="state.inputValue" t-ref="details" type="text"/>
                     </div>
                     <span class="error-message"><t t-esc="add_details.error"/></span>  
                 </div>

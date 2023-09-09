@@ -4,7 +4,7 @@ from odoo import models, fields, api
 class InheritOrderScreeen(models.Model):
     _inherit = ["pos.order"]
 
-    details = fields.Char("Additional Info")
+    details = fields.Char("Type of Business")
     orderline_location = fields.Many2one("sales.location", readonly=True)
 
     @api.model

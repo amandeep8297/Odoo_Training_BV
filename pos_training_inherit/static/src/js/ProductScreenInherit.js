@@ -17,7 +17,7 @@ odoo.define("pos_training.inherit", function (require) {
           "CustomerDetailsPopup",
           {
             startingValue: selectOrderline.get_details(),
-            title: this.env._t("Any additional details"),
+            title: this.env._t("Business Type"),
             confirmText: _lt("Save"),
           }
         );

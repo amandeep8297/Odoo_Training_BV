@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record model="ir.ui.view" id="view_order_form_inherited">
-        <field name="name">Additional details</field>
+        <field name="name">Type of Business</field>
         <field name="model">pos.order</field>
         <field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
         <field name="arch" type="xml">

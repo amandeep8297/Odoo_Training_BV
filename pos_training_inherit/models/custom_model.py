@@ -7,7 +7,7 @@ class resConfigInherit(models.Model):
 
 class resConfigInherit(models.TransientModel):
     _inherit='res.config.settings'
- 
+
     pos_location=fields.Many2many(related="pos_config_id.location" ,string="POS_Location",readonly=False)
 
     
