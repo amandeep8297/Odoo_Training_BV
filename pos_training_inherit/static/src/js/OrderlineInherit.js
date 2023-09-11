@@ -1,19 +1,21 @@
 odoo.define("deleteButton", function (require) {
   "use strict";
 
-  const Orderline = require("point_of_sale.models").Orderline;
+  const Orderline = require("point_of_sale.Orderline");
   const Registries = require("point_of_sale.Registries");
 
-  class OrderlineDeleteButton extends Orderline {
-    setup() {
-      super.setup();
-    }
-   removeOrderline(){
-      console.log("+++++++++++++++++++++++++++++++++++");
-    }
-  }
-
+  const OrderlineDeleteButton = () =>
+    class extends Orderline {
+      setup() {
+        super.setup();
+      }
+      async onClick(orderline) {
+        // console.log(orderline);
+        const currentOrder = this.env.pos.get_order();
+        currentOrder.remove_orderline(orderline);
+      }
+    };
   OrderlineDeleteButton.template = "pos_training_inherit.Orderline";
-  Registries.Component.add(OrderlineDeleteButton);
+  Registries.Component.extend(Orderline, OrderlineDeleteButton);
   return OrderlineDeleteButton;
 });
