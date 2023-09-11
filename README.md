@@ -61,6 +61,19 @@ Oddo OWL framework, Javascript, XML, Python3
    - If the Payment button is clicked and no customer is selected, trigger a user error.
 
 
+##### Product Screen
+![Fourth Image](https://drive.google.com/uc?export=view&id=1xmZLDrlKWKfGDGvJ_o4SCxPr2VJKqQN0)
+
+#### Tasks performed:
+  -> Add a many2one field for sales location in Pos order
+- Create a new model for sales location
+- Load that new model into the POS
+- in POS Using a control button open a selection popup and allow user to select location.
+- That location should sync in backend order.
+
+-> Display a stock of product in pos product screen, on every product square you can add text as per screenshot.
+
+
 
 
 
