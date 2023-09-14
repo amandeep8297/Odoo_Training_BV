@@ -5,7 +5,7 @@ import publicWidget from "web.public.widget";
 publicWidget.registry.Employee = publicWidget.Widget.extend({
   selector: ".basic_snippet3_select",
   start() {
-    // console.log("Krushal is ssherlh");
+    // console.log("******************************************");
 
     let empData = this.el.querySelector("#basic_snippet3_id");
 

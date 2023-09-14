@@ -4,9 +4,9 @@ import options from 'web_editor.snippets.options';
 
 options.registry.EmployeeDetails = options.Class.extend({
     start() {
-        let citiesRow = this.$target.find('#basic_snippet3_id')
+        let detailsDrag = this.$target.find('#basic_snippet3_id')
 
-        if (citiesRow){
+        if (detailsDrag){
             this._rpc({
                 route: '/employee/',
                 params:{}
@@ -25,8 +25,8 @@ options.registry.EmployeeDetails = options.Class.extend({
                         </div>
                     </div>`
                 })
-                citiesRow.html(html)
-                console.log(data);
+                detailsDrag.html(html)
+                // console.log(data);
             })
         }
     },

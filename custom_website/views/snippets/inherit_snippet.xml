@@ -8,6 +8,7 @@
                     <t t-snippet="custom_website.basic_snippet" t-thumbnail="custom_website/static/src/img/bv.png"/>
                     <t t-snippet="custom_website.basic_snippet2" t-thumbnail="custom_website/static/src/img/snippets/ums.webp"/>
                      <t t-snippet="custom_website.basic_snippet3"/>
+                     <t t-snippet="custom_website.slider_snippet"/>
                 </div>
             </div>
         </xpath>
