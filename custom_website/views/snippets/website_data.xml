@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="custom_website.snippet_img" model="ir.attachment">
+        <field name="public" eval="True"/>
+        <field name="name">basic1.jpg</field>
+        <field name="type">url</field>
+        <field name="url">/custom_website/static/src/img/basic1.jpg</field>
+    </record>
+    <record id="custom_website.slider_image_1" model="ir.attachment">
+        <field name="public" eval="True"/>
+        <field name="name">slider1.jpg</field>
+        <field name="type">url</field>
+        <field name="url">/custom_website/static/src/img/snippets/slider1.jpg</field>
+    </record>
+    <record id="custom_website.slider_image_2" model="ir.attachment">
+        <field name="public" eval="True"/>
+        <field name="name">slider2.jpg</field>
+        <field name="type">url</field>
+        <field name="url">/custom_website/static/src/img/snippets/slider2.jpg</field>
+    </record>
+    <record id="custom_website.slider_image_3" model="ir.attachment">
+        <field name="public" eval="True"/>
+        <field name="name">slider3.jpg</field>
+        <field name="type">url</field>
+        <field name="url">/custom_website/static/src/img/snippets/slider3.jpg</field>
+    </record>
+</odoo>

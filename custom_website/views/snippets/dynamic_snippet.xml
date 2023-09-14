@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="basic_snippet3" name="Brainvire countries - Dynamic">
+        <section class="basic_snippet3_select">
+            <div class="container">
+                <div class="text-center py-5">
+                    <h2 class="h1">Brainvire Business</h2>
+                    <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for <br/>
+previewing layouts and visual mockups.</p>
+                </div>
+
+                <!-- element to store list of cities using JS -->
+                <div class="row justify-content-center" id="basic_snippet3_id"/>
+            </div>
+        </section>
+    </template>
+
+    <!-- To be used in JS for snippet options -->
+    <template id="explore_cities_options" inherit_id="website.snippet_options">
+        <xpath expr="//div[@data-js='Box']" position="before">
+            <div data-js="EmployeeDetails" data-selector=".basic_snippet3_select" data-drop-in=".o_mega_menu nav">
+            </div>
+        </xpath>
+    </template>
+</odoo>

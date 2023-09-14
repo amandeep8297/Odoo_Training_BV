@@ -121,11 +121,6 @@
         </record>
 
         <!-- Add the menu item to access the configuration view -->
-        <menuitem id="school_config_settings_menu"
-            name="Global config Settings"
-            parent="school_management.menu_range"
-            sequence="10"
-            action="school_config_settings_action"
-            groups="base.group_system" />
+       
     </data>
 </odoo>

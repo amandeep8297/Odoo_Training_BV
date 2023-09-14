@@ -9,4 +9,10 @@
     <menuitem id="sports_data" name="Student Game Table" parent="menu_range" action="sports_submit" sequence='50'/>
     <menuitem id="menu_view_todo_task" name="Student To-Do Task" action="todo_action" parent="menu_range" sequence="60"/>
     <menuitem id="menu_view_calculator" name="Fee calculator" action="calculator_action" parent="menu_range" sequence="70"/>
+     <menuitem id="school_config_settings_menu"
+            name="Global config Settings"
+            parent="school_management.menu_range"
+            sequence="10"
+            action="school_config_settings_action"
+            groups="base.group_system" />
 </odoo>

@@ -1,0 +1,62 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="employee_snippet_form">
+      <field name="name">Employee Snippet Form</field>
+      <field name="model">employee.snippet</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="emp_name"/>
+              <field name="emp_code"/>
+              <field name="emp_img"/>
+              <field name="country_id"/>
+              <field name="state_id"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Tree View for Employee Snippet -->
+
+    <record model="ir.ui.view" id="employee_snippet_tree">
+      <field name="name">Employee Snippet Tree</field>
+      <field name="model">employee.snippet</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="emp_name"/>
+          <field name="emp_code"/>
+          <field name="country_id"/>
+          <field name="state_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Action for Employee Snippet Form View -->
+
+    <record model="ir.actions.act_window" id="employee_snippet_action_form">
+      <field name="name">Employee Snippet Form</field>
+      <field name="res_model">employee.snippet</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Action for Employee Snippet Tree View -->
+
+    <record model="ir.actions.act_window" id="employee_snippet_action_tree">
+      <field name="name">Employee Snippet Tree</field>
+      <field name="res_model">employee.snippet</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Employee Snippet" id="employee_snippet_menu_root" />
+
+    <menuitem name="Employee List" id="employee_snippet_menu_list" parent="employee_snippet_menu_root"
+              action="employee_snippet_action_tree"/>
+
+    <menuitem name="Employee Form" id="employee_snippet_menu_form" parent="employee_snippet_menu_root"
+              action="employee_snippet_action_form"/>
+
+
+  </data>
+</odoo>
