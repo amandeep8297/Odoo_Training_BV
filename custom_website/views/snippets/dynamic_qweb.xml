@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id="custom_website.dynamic_snippet_template" name="Snippet Template">
+    <div class="employee_snippet_id">
+      <t t-foreach="data" t-as="i">
+        <ol>
+          <li>
+            <t t-out="i.emp_name"></t>
+            <img src="{emp.img}"></img>
+          </li>
+        </ol>
+      </t>
+    </div>
+  </template>
+</odoo>

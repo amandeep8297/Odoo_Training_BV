@@ -3,15 +3,15 @@
     <template id="basic_snippet2" name="Brainvire Products">
         <section class="products o_cc5">
             <div class="container py-5">
-                <div class="d-flex align-items-center">
+                <div class="d-flex justify-content-between align-items-center">
                     <h2 class="h1 m-0">Brainvire Products</h2>
                     <a href="#" class="ml-auto btn btn-primary mb-2 mt-3 rounded-circle font-weight-medium">View all</a>
                 </div>
 
-                <div class="row mt-5">
+                <div class="product-bv row mt-5">
                     <div class="col-lg-3">
                         <div class="product-img-container rounded">
-                            <img class="object-fit rounded" src="/custom_website/static/src/img/snippets/auro.webp"/>
+                            <img class="bvp-img object-fit rounded" src="/custom_website/static/src/img/snippets/auro.jpeg"/>
                         </div>
                         <div class="mt-2">
                             <span class="text-muted d-block">Auro CRM</span>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="product-img-container rounded">
-                            <img class="object-fit rounded" src="/custom_website/static/src/img/snippets/retail.webp"/>
+                            <img class="bvp-img object-fit rounded" src="/custom_website/static/src/img/snippets/retail.png"/>
                         </div>
                         <div class="mt-2">
                             <span class="text-muted d-block">Retail Omni-Channel ERP</span>
@@ -27,18 +27,10 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="product-img-container rounded">
-                            <img class="object-fit rounded" src="/custom_website/static/src/img/snippets/ums.webp"/>
+                            <img class="bvp-img object-fit rounded" src="/custom_website/static/src/img/snippets/ums.jpeg"/>
                         </div>
                         <div class="mt-2">
                             <span class="text-muted d-block">University Management System</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product-img-container rounded">
-                            <img class="object-fit rounded" src="/custom_website/static/src/img/snippets/mgn.webp"/>
-                        </div>
-                        <div class="mt-2">
-                            <span class="text-muted d-block">Magento-Amazon Integration</span>
                         </div>
                     </div>
                 </div>

@@ -29,7 +29,4 @@ class SportsPlayer(models.Model):
         print(self._context)
         return self.create({'game':game}).name_get()[0]
     
-    # @api.onchange('images')
-    # def check_image(self):
-    #     for rec in self:
-    #         print(rec.images)
+   

@@ -9,13 +9,14 @@
     "application": True,
     "category": "Uncategorized",
     "version": "0.1",
-    "depends": ["base","website","sale"],
-    "assets":{
-        "web.assets_frontend":[
-
-       'custom_website/static/src/js/dynamic_snippet.js',
-       'custom_website/static/src/js/dynamic_snippet_options.js',
-    ]},
+    "depends": ["base", "website", "sale"],
+    "assets": {
+        "web.assets_frontend": [
+            # "custom_website/static/src/js/000.js",
+            "custom_website/static/src/js/dynamic_snippet.js",
+            "custom_website/static/src/scss/snippet.scss",
+        ]
+    },
     "data": [
         "security/ir.model.access.csv",
         "views/templates.xml",
@@ -25,9 +26,10 @@
         "views/snippets/dynamic_snippet.xml",
         "views/snippets/static_carousel_snippet.xml",
         "views/snippets/inherit_snippet.xml",
+        # "views/snippets/dynamic_qweb.xml",
         "views/views.xml",
     ],
-   
+    # 'qweb': ['custom_website/views/snippets/dynamic_qweb.xml'],
     "demo": [
         "demo/demo.xml",
     ],

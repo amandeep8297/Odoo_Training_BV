@@ -1,0 +1,39 @@
+.odoo-info{
+    background-color: rgb(38, 24, 5);
+   
+}
+.bv-intro{
+    background-color: #212121;
+    color: whitesmoke;
+    margin-bottom: 50px;
+}
+.employee-slider{
+    background-color: rgb(119, 31, 31);
+    color:white;
+}
+.tech-bv-img{
+    display: flex;
+    justify-content:space-around;
+}
+.carousel-item{
+    color: whitesmoke;
+}
+.product-bv{
+    display: flex;
+    justify-content:space-around;
+}
+.bvp-img{
+    width: 150px;
+    height: 150px;
+}
+// Variables
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+
+// Mixins
+@mixin rounded($radius) {
+  border-radius: $radius;
+}
+
+
+  

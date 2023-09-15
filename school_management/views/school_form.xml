@@ -258,7 +258,7 @@
     </record>
     <!-- Action -->
 
-   
+
 
     <record id="action_school_student_science" model="ir.actions.act_window">
       <field name="name">Science Students</field>

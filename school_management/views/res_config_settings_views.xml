@@ -110,7 +110,6 @@
                 </xpath>
             </field>
         </record>
-        <!-- Add the action for the configuration view -->
         <record id="school_config_settings_action" model="ir.actions.act_window">
             <field name="name">Settings</field>
             <field name="type">ir.actions.act_window</field>
@@ -119,8 +118,6 @@
             <field name="target">inline</field>
             <field name="context">{'module' : 'school_management', 'bin_size': False}</field>
         </record>
-
-        <!-- Add the menu item to access the configuration view -->
        
     </data>
 </odoo>
