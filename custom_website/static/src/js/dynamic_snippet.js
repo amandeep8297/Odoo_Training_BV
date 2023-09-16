@@ -25,10 +25,10 @@ publicWidget.registry.Employee = publicWidget.Widget.extend({
                     </div>
                     <div>
                         <h5 class="mb-0">${
-                          empData.state_id ? empData.state_id[1] : ""
+                          empData.state_id 
                         }</h5>
                         <div>${
-                          empData.country_id ? empData.country_id[1] : ""
+                          empData.country_id
                         }</div>
                     </div>
                 </div>

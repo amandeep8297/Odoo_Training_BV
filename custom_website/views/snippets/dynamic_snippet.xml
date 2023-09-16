@@ -11,10 +11,4 @@
             </div>
         </section>
     </template>
-    <template id="explore_cities_options" inherit_id="website.snippet_options">
-        <xpath expr="//div[@data-js='Box']" position="before">
-            <div data-js="EmployeeDetails" data-selector=".basic_snippet3_select" data-drop-in=".o_mega_menu nav">
-            </div>
-        </xpath>
-    </template>
 </odoo>
