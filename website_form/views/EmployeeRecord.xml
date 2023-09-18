@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <!-- Define a route to map to the custom controller method -->
+        <record id="custom_signup_form_route" model="ir.http.route">
+            <field name="name">custom_signup_form_route</field>
+            <field name="type">json</field>
+            <field name="auth">user</field>
+            <field name="route">/submit_form</field>
+            <field name="controller_id" ref="website_form.custom_signup_controller"/>
+            <field name="function">submit_form</field>
+        </record>
+    
+</odoo>

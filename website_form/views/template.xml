@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="website_form.employee_form_data" name="Employee Form">
+    <!-- <script type="text/javascript" src="/website_form/static/src/js/MessagePopup.js"></script> -->
+        <t t-call="website.layout">
+            <section class="employee-slider border-none company-visible">
+                <div id="carouselExampleCaptions" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="/custom_website/static/src/img/bv.png" class="object-fit rounded mx-auto" alt="..."/>
+                            <div class="col-lg-3 mx-auto">
+                                <h5>Welcome to Employee Form</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/website_form/static/src/img/od.jpeg" class="object-fit rounded mx-auto" alt="..."/>
+                            <div class="col-lg-3 mx-auto">
+                                <h5>Odoo Website</h5>
+                                <p>Odoo is a suite of open source business apps that cover all your company needs: CRM, eCommerce, accounting, inventory, point of sale, project management, etc.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </section>
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                Registration Form
+                            </div>
+                            <div class="card-body">
+                                <form action="/employee/form/submit" method="post">
+                                    <div class="form-group">
+                                        <label for="emp_name">Employee Name:</label>
+                                        <input type="text" class="form-control" name="emp_name" id="name" required="true" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="emp_code">Employee Code:</label>
+                                        <input type="text" class="form-control" name="emp_code" id="code" required="true" />
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </t>
+    </template>
+</odoo>
