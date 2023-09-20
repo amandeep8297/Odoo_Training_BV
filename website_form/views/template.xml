@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <template id="website_form.employee_form_data" name="Employee Form">
-    <!-- <script type="text/javascript" src="/website_form/static/src/js/MessagePopup.js"></script> -->
+        <!-- <script type="text/javascript" src="/website_form/static/src/js/MessagePopup.js"></script> -->
         <t t-call="website.layout">
             <section class="employee-slider border-none company-visible">
                 <div id="carouselExampleCaptions" class="carousel slide">
@@ -35,6 +35,25 @@
                     </button>
                 </div>
             </section>
+            <div class="modal fade" id="popupmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">X</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" id='modal-body'>
+        ...
+                        </div>
+                        <div class="modal-footer">
+                            <!-- <button type="submit" id="signup" class="btn btn-primary">Signup</button> -->
+                            <button type="submit" id="confirm" class="btn btn-primary">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="container mt-5">
                 <div class="row justify-content-center">
                     <div class="col-md-6">
@@ -43,18 +62,18 @@
                                 Registration Form
                             </div>
                             <div class="card-body">
-                                <form action="/employee/form/submit" method="post">
+                                <form id="employeeForm" method="post">
                                     <div class="form-group">
                                         <label for="emp_name">Employee Name:</label>
-                                        <input type="text" class="form-control" name="emp_name" id="name" required="true" />
+                                        <input type="text" class="form-control" name="emp_name" id="name"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="emp_code">Employee Code:</label>
-                                        <input type="text" class="form-control" name="emp_code" id="code" required="true" />
+                                        <input type="text" class="form-control" name="emp_code" id="code"/>
                                     </div>
-
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" id="sub" class="btn btn-primary">Submit</button>
                                 </form>
+
                             </div>
                         </div>
                     </div>

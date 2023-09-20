@@ -17,7 +17,7 @@
         ]
     },
     "data": [
-        "security/ir.model.access.csv",
+        # "security/ir.model.access.csv",
         # "views/EmployeeRecord.xml",
         "views/template.xml",
        "views/snippets/success.xml",
